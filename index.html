@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>无产阶级政治经济学命名词典 — v4.0 完整版</title>
+<style>
+  :root {
+    --red:#CC0000; --darkred:#8B0000; --brightred:#E60012;
+    --gold:#DAA520; --lightgold:#F0D060; --cream:#FFF8E7;
+    --black:#1a1a1a; --white:#fff;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family:'Noto Sans SC','Microsoft YaHei','SimHei',sans-serif;
+    background:var(--cream); color:var(--black); line-height:1.8;
+  }
+  /* 封面 */
+  .cover {
+    background:linear-gradient(135deg,var(--darkred)0%,var(--red)40%,#E60000 70%,var(--darkred)100%);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    justify-content:center; text-align:center; padding:3rem; position:relative; overflow:hidden;
+  }
+  .cover::before {
+    content:''; position:absolute; top:0;left:0;right:0;bottom:0;
+    background:repeating-linear-gradient(0deg,transparent,transparent 40px,rgba(255,215,0,0.04)40px,rgba(255,215,0,0.04)41px);
+  }
+  .cover-star { font-size:6rem; color:var(--lightgold); text-shadow:0 0 30px rgba(255,215,0,0.5); position:relative; z-index:1; }
+  .cover h1 {
+    font-family:'Noto Serif SC','SimSun',serif; font-size:3.2rem; font-weight:900;
+    color:var(--lightgold); letter-spacing:0.15em; margin:1rem 0;
+    text-shadow:2px 2px 4px rgba(0,0,0,0.5); position:relative; z-index:1; line-height:1.3;
+  }
+  .cover .subtitle { font-size:1.4rem; color:var(--white); letter-spacing:0.3em; font-weight:700; position:relative; z-index:1; }
+  .cover .version { font-size:1.1rem; color:rgba(255,255,255,0.7); letter-spacing:0.2em; position:relative; z-index:1; }
+  .cover .slogan {
+    font-family:'Noto Serif SC',serif; font-size:1.8rem; font-weight:900; color:var(--lightgold);
+    letter-spacing:0.2em; margin-top:3rem; position:relative; z-index:1;
+    border-top:2px solid var(--lightgold); border-bottom:2px solid var(--lightgold);
+    padding:0.8rem 3rem; display:inline-block;
+  }
+  /* 页面 */
+  .page { max-width:960px; margin:0 auto; padding:2rem 1.5rem 3rem; }
+  .page + .page { border-top:3px double var(--red); }
+  /* 毛语录 */
+  .maoquote {
+    background:var(--darkred); color:var(--lightgold); padding:1.5rem 2rem; margin:1.5rem 0;
+    border-left:6px solid var(--gold); font-family:'Noto Serif SC','SimSun',serif;
+    font-size:1rem; font-weight:700; letter-spacing:0.05em; position:relative;
+  }
+  .maoquote::before { content:'★'; position:absolute; top:-14px; left:18px; font-size:1.8rem; color:var(--gold); }
+  .maoquote .attr { display:block; text-align:right; margin-top:0.6rem; font-size:0.85rem; color:rgba(255,215,0,0.7); font-weight:400; }
+  /* 编标题 */
+  .sec-hdr {
+    background:var(--red); color:var(--lightgold); padding:0.9rem 1.5rem;
+    margin:2.5rem 0 1.2rem; font-family:'Noto Serif SC',serif;
+    font-size:1.4rem; font-weight:900; letter-spacing:0.15em; text-align:center; position:relative;
+  }
+  .sec-hdr::before,.sec-hdr::after { content:'◆'; position:absolute; top:50%; transform:translateY(-50%); font-size:0.65rem; }
+  .sec-hdr::before { left:1rem; } .sec-hdr::after { right:1rem; }
+  /* 概念条目-C类/B类(完整) */
+  .entry {
+    background:var(--white); border:2px solid var(--darkred); margin:1.5rem 0;
+    box-shadow:3px 3px 0 rgba(139,0,0,0.15);
+  }
+  .entry-hd {
+    background:var(--darkred); color:var(--lightgold); padding:0.7rem 1.2rem;
+    display:flex; align-items:center; gap:0.7rem; font-family:'Noto Serif SC',serif; flex-wrap:wrap;
+  }
+  .entry-hd .num { background:var(--gold); color:var(--darkred); font-weight:900; font-size:0.75rem; padding:0.15rem 0.5rem; white-space:nowrap; }
+  .entry-hd h3 { font-size:1.05rem; font-weight:900; letter-spacing:0.06em; flex:1; min-width:120px; }
+  .badge-c { font-size:0.65rem; padding:0.1rem 0.4rem; border:1px solid var(--lightgold); color:var(--lightgold); letter-spacing:0.1em; white-space:nowrap; }
+  .badge-b { font-size:0.65rem; padding:0.1rem 0.4rem; border:1px solid #FFB84D; color:#FFB84D; letter-spacing:0.1em; white-space:nowrap; }
+  .badge-a { font-size:0.65rem; padding:0.1rem 0.4rem; border:1px solid #ccc; color:#ccc; letter-spacing:0.1em; white-space:nowrap; }
+  .entry-bd { padding:1.2rem; }
+  .renaming { background:linear-gradient(90deg,#FFF0F0,transparent); border-left:4px solid var(--red); padding:0.6rem 1rem; margin:0.5rem 0 1rem; font-weight:900; font-size:1rem; color:var(--darkred); }
+  .dim { margin:0.6rem 0; padding-left:0.8rem; }
+  .dim-t { font-weight:900; color:var(--red); font-size:0.9rem; margin-bottom:0.15rem; }
+  .dim-t::before { content:'▶ '; font-size:0.65rem; }
+  .misuse { background:#FFF9E6; border:1px dashed var(--gold); padding:0.6rem 0.8rem; margin:0.8rem 0; font-size:0.85rem; color:#8B6914; }
+  .misuse strong { color:var(--darkred); }
+  .mass-v { background:#FFF0F0; border:1px solid rgba(204,0,0,0.2); padding:0.6rem 0.8rem; margin:0.6rem 0; font-size:0.85rem; font-style:italic; }
+  .mass-v::before { content:'🗣 群众版：'; font-weight:900; font-style:normal; color:var(--red); }
+  /* A类紧凑卡片 */
+  .entry-a {
+    background:var(--white); border:1px solid rgba(139,0,0,0.3); margin:0.6rem 0;
+    padding:0.6rem 1rem; display:flex; align-items:baseline; gap:0.6rem; flex-wrap:wrap;
+  }
+  .entry-a .anum { font-weight:900; font-size:0.75rem; color:var(--darkred); white-space:nowrap; min-width:2.2rem; }
+  .entry-a .aorig { font-size:0.85rem; font-weight:700; color:#555; white-space:nowrap; }
+  .entry-a .aarr { font-size:0.85rem; color:var(--darkred); margin:0 0.2rem; }
+  .entry-a .aname { font-size:0.85rem; font-weight:900; color:var(--darkred); }
+  .entry-a .areason { font-size:0.78rem; color:#666; flex-basis:100%; margin-top:0.2rem; padding-left:0.5rem; border-left:2px solid rgba(204,0,0,0.2); }
+  /* 红底金字段 */
+  .hl-box {
+    background:var(--red); color:var(--white); padding:1.2rem 1.5rem; margin:1.5rem 0;
+    font-weight:700; letter-spacing:0.05em; text-align:center; font-size:0.95rem;
+  }
+  /* 附录表格 */
+  .apx-table { width:100%; border-collapse:collapse; margin:1rem 0; font-size:0.8rem; }
+  .apx-table th { background:var(--darkred); color:var(--lightgold); padding:0.5rem 0.6rem; text-align:left; font-weight:700; }
+  .apx-table td { padding:0.4rem 0.6rem; border-bottom:1px solid #ddd; }
+  .apx-table tr:nth-child(even) td { background:#FFF8F8; }
+  .badge-sm-c { display:inline-block; background:var(--red); color:white; padding:0.05rem 0.3rem; font-size:0.65rem; font-weight:900; }
+  .badge-sm-b { display:inline-block; background:#E67E00; color:white; padding:0.05rem 0.3rem; font-size:0.65rem; font-weight:900; }
+  .badge-sm-a { display:inline-block; background:#555; color:white; padding:0.05rem 0.3rem; font-size:0.65rem; font-weight:700; }
+  @media print {
+    body { background:white; font-size:10pt; }
+    .page { max-width:100%; border-top:none; padding:0.8rem 1rem; page-break-after:always; }
+    .cover { min-height:100vh; page-break-after:always; }
+    .entry,.entry-a { break-inside:avoid; box-shadow:none; }
+    @page { margin:1.2cm; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ 封面 ═══ -->
+<div class="cover">
+  <div class="cover-star">★</div>
+  <h1>无产阶级<br>政治经济学<br>命名词典</h1>
+  <div class="subtitle">——第 四 版 · 完 整 版——</div>
+  <div class="version">v 4.0 · 正式版 · 约190词条 · 十三编 · 2026</div>
+  <div class="slogan">全世界无产者，联合起来！</div>
+</div>
+
+<!-- ═══ 编纂说明 ═══ -->
+<div class="page">
+  <div class="maoquote">
+    "没有革命的理论，就没有革命的运动。"
+    <span class="attr">—— 列 宁</span>
+  </div>
+  <div class="maoquote">
+    "共产党人不屑于隐瞒自己的观点和意图。他们公开宣布：他们的目的只有用暴力推翻全部现存的社会制度才能达到。"
+    <span class="attr">—— 马克思 & 恩格斯《共产党宣言》</span>
+  </div>
+  <div class="sec-hdr">编纂说明</div>
+  <p style="text-indent:2em; margin:1rem 0; font-size:0.95rem;">
+  本词典是<strong>命名权工程</strong>的正式成果，收词约<strong>190条</strong>，分十三编。它的根本功能是：<strong>当劳动者听到一个资产阶级经济学术语时，能够快速识别这个术语遮蔽了什么阶级关系，并找到无产阶级自己的语言来重新理解同一个现象。</strong>
+  </p>
+  <div class="hl-box">命名权不是对词语的占有，而是对世界解释权的争夺。</div>
+  <p style="text-indent:2em; font-size:0.9rem;">
+  <strong>四类标注：</strong><span class="badge-sm-c">C</span>多维概念束（3+维度，完整遮蔽分析+误用警示+群众转化）<span class="badge-sm-b">B</span>双维命名 <span class="badge-sm-a">A</span>单一命名。<strong>四条原则：</strong>先描述后批判再命名；命名必须可误用预警；群众转化不是可选项；暂缓优于乱命名。
+  </p>
+  <div class="hl-box">笔壳服务于笔芯。资产阶级术语的中性外表，本身就是一种阶级操作。</div>
+</div>
+
+<!-- ═══════════ 第一编：宏观经济 ═══════════ -->
+<div class="page">
+<div class="sec-hdr">第一编 · 宏观经济（20条）</div>
+
+<!-- 1.01 C类 -->
+<div class="entry">
+<div class="entry-hd"><span class="num">1.01</span><h3>经济危机</h3><span class="badge-c">C类·四维概念束</span></div>
+<div class="entry-bd">
+<div class="renaming">经济危机 → 阶级力量重置周期</div>
+<div class="dim"><div class="dim-t">维度一：剩余价值实现危机（经济根源）</div><p>资本主义生产为利润不为需要。劳动者创造价值却只能取回工资。资本无限扩张生产能力，劳动者购买力被压在劳动力再生产成本线上→商品卖不掉→资本循环中断→企业倒闭、工人失业。这不是"货币现象"或"政策失误"，是剥削制度的内生矛盾。</p></div>
+<div class="dim"><div class="dim-t">维度二：阶级力量重置周期（阶级动态）</div><p>繁荣期→劳动者议价能力上升→利润受挤压→资产阶级利用危机→大规模失业打垮劳动者→压低工资、瓦解工会、削减福利→剥削率强制性跃升→利润修复。危机不是"市场失灵"，是资产阶级通过经济崩溃重置整个阶级力量对比的手术。</p></div>
+<div class="dim"><div class="dim-t">维度三：剥削条件的周期性修复机制（制度功能）</div><p>危机淘汰低效资本、重置劳动力成本、重新划定阶级分配比例、为新一轮积累清理空间。危机不是资本主义的"病"，是它的"自我治疗"——治疗手段是放劳动者的血。</p></div>
+<div class="dim"><div class="dim-t">维度四：资产阶级转嫁责任的系统性谎言装置（意识形态）</div><p>"监管缺位""央行放水太多""投资者贪婪""下次会更好"——把危机说成所有人的错误，真正的制造者隐藏在"我们"后面。</p></div>
+<div class="misuse"><strong>⚠ 误用：</strong>只讲"剩余价值实现危机"→退回学院派。只讲"阶级力量重置周期"→滑向阴谋论。<strong>写作中至少同时使用前两个命名。</strong></div>
+<div class="mass-v">经济危机不是天灾，是资本卖不出东西之后借机裁员降薪，把工人重新打回弱势位置。老板赚钱的时候没说利润和你平分，危机一来却让你降薪、加班、还房贷。</div>
+</div></div>
+
+<!-- 1.02 C类 -->
+<div class="entry">
+<div class="entry-hd"><span class="num">1.02</span><h3>通货膨胀</h3><span class="badge-c">C类·三维概念束</span></div>
+<div class="entry-bd">
+<div class="renaming">通货膨胀 → 资本掠夺性加价</div>
+<div class="dim"><div class="dim-t">维度一：资本掠夺性加价（阶级主体）</div><p>不是"货币现象"，是资产阶级通过控制定价权、垄断生产条件，在不提高劳动者工资的前提下系统性提高商品价格的财富转移。新增货币先进入金融部门和大型资本→资产先涨→消费品后涨→工资涨幅远滞后。</p></div>
+<div class="dim"><div class="dim-t">维度二：劳动者实际购买力的暗中侵蚀（阶级后果）</div><p>通胀周期结束时，资产持有者更富，劳动者更穷。不是"共同面对物价问题"——是阶级之间的财富再分配。</p></div>
+<div class="dim"><div class="dim-t">维度三：剔除劳动者生存命脉后的修饰通胀（统计修饰）</div><p>"核心通胀率"剔除食品和能源——这些正是劳动者无法削减的刚性支出。剔除了劳动者必须买的东西之后，通胀并不高。</p></div>
+<div class="misuse"><strong>⚠ 误用：</strong>不是所有涨价都是资本家阴谋。加价在市场竞争中分散发生，但竞争结构条件（货币发行、信贷政策、行业垄断）由资产阶级国家和大资本设定。</div>
+<div class="mass-v">你工资没涨，饭菜房租都涨了——这就等于老板和资本把你的工资暗中降了。通胀不是物价自己涨，是资本用定价权和货币权削你的实际工资。</div>
+</div></div>
+
+<!-- 1.03 B类 -->
+<div class="entry">
+<div class="entry-hd"><span class="num">1.03</span><h3>通货紧缩</h3><span class="badge-b">B类·双维命名</span></div>
+<div class="entry-bd">
+<div class="renaming">通货紧缩 → 剩余价值实现危机性崩价</div>
+<div class="dim"><div class="dim-t">维度一：剩余价值实现危机性崩价（经济根源）</div><p>生产相对过剩→劳动者买不起→商品滞销→资本循环断裂→企业被迫降价→更多企业倒闭→更多失业→更买不起→更大降幅。</p></div>
+<div class="dim"><div class="dim-t">维度二：劳动者被系统性踢出市场的价格清洗（阶级后果）</div><p>通缩周期最先崩溃的是就业和工资。资产阶级说"物价跌了钱值钱了是好事"——不提你失业之后物价再低也买不起。资本通过破产清算完成"优胜劣汰"——活下来的大资本低价收购破产资产。</p></div>
+<div class="mass-v">资产阶级跟你说物价跌了是好事——他没说物价跌之前，你的工作先没了。东西卖不掉→工厂关门→你失业→物价再低你也买不起。</div>
+</div></div>
+
+<!-- 1.04 B类 -->
+<div class="entry">
+<div class="entry-hd"><span class="num">1.04</span><h3>国内生产总值（GDP）</h3><span class="badge-b">B类·双维命名</span></div>
+<div class="entry-bd">
+<div class="renaming">GDP → 资本增殖账面总额</div>
+<div class="dim"><div class="dim-t">维度一：资本增殖账面总额（去自然化）</div><p>GDP统计的是市场交易价值，主体是资本循环中的交易。把资本家的利润增长、资产炒作和财政支出打包成"社会财富增长"。</p></div>
+<div class="dim"><div class="dim-t">维度二：市场交易价值总量（测量边界揭露）</div><p>计入：武器生产、污染治理、灾后重建、监狱运营。排除：家务劳动、自然消耗、无偿照护、闲暇时间、劳动者健康损耗。治污花钱→GDP涨；河水干净→GDP不涨。</p></div>
+<div class="mass-v">GDP涨了不代表你过得好了。你家老人住院花十几万→GDP涨了。河被工厂污染，治污花几千万→GDP又涨了。你每天带孩子照顾老人→一分钱不算GDP。GDP是给资本家记账的数字，不是给你记账的。</div>
+</div></div>
+
+<!-- 1.05-1.20 A类紧凑 -->
+<div class="entry-a"><span class="anum">1.05</span><span class="aorig">GDP增长</span><span class="aarr">→</span><span class="aname">资本增殖速度</span><span class="areason">"增长"暗示变好——但增长伴随着贫富分化加剧、劳动者实际工资停滞。"GDP增长率破5%——老板们开香槟，你工资涨了多少？"</span></div>
+<div class="entry-a"><span class="anum">1.06</span><span class="aorig">国民生产总值/国民总收入</span><span class="aarr">→</span><span class="aname">本国资本与劳动力全球剥削所得</span><span class="areason">这部分收入来自本国资本在国内外榨取的剩余价值，以及本国劳动者（含海外劳工）被剥削后的报酬总和。</span></div>
+<div class="entry-a"><span class="anum">1.07</span><span class="aorig">潜在GDP</span><span class="aarr">→</span><span class="aname">资本扩张幻想产能</span><span class="areason">"潜在GDP"以"充分就业"为基准——资产阶级的"充分就业"是"所有可被剥削的劳动力全部被雇佣"，不是"人人有保障"。</span></div>
+<div class="entry-a"><span class="anum">1.08</span><span class="aorig">经济周期</span><span class="aarr">→</span><span class="aname">资本积累的痉挛周期</span><span class="areason">"周期"暗示自然节律。实质是剩余价值集中积累（繁荣）与剩余价值实现受阻的崩盘（危机）。用"痉挛"强调病理性——不是四季更替，是心脏抽搐。</span></div>
+<div class="entry-a"><span class="anum">1.09</span><span class="aorig">滞涨</span><span class="aarr">→</span><span class="aname">资本利润率崩溃与剥削率维持的并存痉挛</span><span class="areason">高通胀（资本转嫁成本）+高失业（资本压缩劳动力）同时出现。资本两头顾不上——既想涨价多赚，又不想多雇人。</span></div>
+<div class="entry-a"><span class="anum">1.10</span><span class="aorig">菲利普斯曲线</span><span class="aarr">→</span><span class="aname">剥削率的短期政治权衡曲线</span><span class="areason">"通胀与失业的此消彼长"=资产阶级在"压低工资"与"扩大剥削规模"之间的短期取舍。长期看二者没有必然替代关系。</span></div>
+<div class="entry-a"><span class="anum">1.11</span><span class="aorig">奥肯定律</span><span class="aarr">→</span><span class="aname">剥削规模与剥削率的关系律</span><span class="areason">GDP增长→吸纳更多劳动力（扩大剥削规模），但每单位增长能吸纳的劳动力随技术进步而下降——机器替代人。</span></div>
+<div class="entry-a"><span class="anum">1.12</span><span class="aorig">总需求（AD）</span><span class="aarr">→</span><span class="aname">有支付能力的剥削需求</span><span class="areason">不是"全社会需要多少"，而是"钱能买到的需求"。饥饿失业工人有无穷需求但兜里没钱→在AD曲线里不存在。AD将财富分配的结果当作分析起点。</span></div>
+<div class="entry-a"><span class="anum">1.13</span><span class="aorig">总供给（AS）</span><span class="aarr">→</span><span class="aname">资本增殖能力曲线</span><span class="areason">反映资本在现有利润率条件下愿意组织多少劳动力来生产，上限受制于劳动者可被剥削的程度。</span></div>
+<div class="entry-a"><span class="anum">1.14</span><span class="aorig">挤出效应</span><span class="aarr">→</span><span class="aname">政府为资本续命，挤占劳动市场空间</span><span class="areason">政府发债推高利率，表面"挤占私人投资"，实质是公共资源优先保障资本利润。</span></div>
+<div class="entry-a"><span class="anum">1.15</span><span class="aorig">自动稳定器</span><span class="aarr">→</span><span class="aname">资产阶级国家的阶级安抚装置</span><span class="areason">累进税和失业救济在危机时自动增加——不是"科学设计"，是在劳动者最愤怒时自动释放压力防止沸腾为革命。</span></div>
+<div class="entry-a"><span class="anum">1.16</span><span class="aorig">债务与GDP之比</span><span class="aarr">→</span><span class="aname">资本透支未来剥削的杠杆率</span><span class="areason">债务是资本提前支取未来剩余价值的工具。比值衡量资产阶级已将未来劳动者的劳动抵押给今天金融资本的程度。</span></div>
+<div class="entry-a"><span class="anum">1.17</span><span class="aorig">MMT（现代货币理论）</span><span class="aarr">→</span><span class="aname">主权货币掩护下的阶级妥协工具箱</span><span class="areason">资产阶级对MMT极度双标：印钞纾困=正常；印钞发福利=通胀灾难。印钞服务于资本时是"货币政策"，可能服务于劳动者时就是"通胀灾难"。</span></div>
+<div class="entry-a"><span class="anum">1.18</span><span class="aorig">结构性改革</span><span class="aarr">→</span><span class="aname">资本对劳动权益的进攻</span><span class="areason">"劳动力市场结构性改革""养老金改革"——无一例外是削减劳动者工资、福利和劳动保护。区分标准：改革提高了谁的权力？</span></div>
+<div class="entry-a"><span class="anum">1.19</span><span class="aorig">核心通胀率</span><span class="aarr">→</span><span class="aname">剔除劳动者生存命脉后的修饰通胀</span><span class="areason">剔除食品和能源→得"好看"数字→为资本宽松政策提供借口。已纳入通货膨胀概念束维度三。</span></div>
+<div class="entry-a"><span class="anum">1.20</span><span class="aorig">消费者物价指数（CPI）</span><span class="aarr">→</span><span class="aname">劳动者必要生活资料价格指数</span><span class="areason">CPI衡量的不是一般物价，是劳动者维持劳动力再生产所必需商品的价格波动。当CPI被用于加息制造失业时，它同时是资产阶级统治合法性维护数字。</span></div>
+</div>
+
+<!-- ═══════════ 第二编：货币政策 ═══════════ -->
+<div class="page">
+<div class="sec-hdr">第二编 · 货币政策与财政政策（10条）</div>
+
+<div class="entry">
+<div class="entry-hd"><span class="num">2.01</span><h3>利率</h3><span class="badge-c">C类·三维概念束</span></div>
+<div class="entry-bd">
+<div class="renaming">利率 → 劳动者与资本之间的利益切换开关</div>
+<div class="dim"><div class="dim-t">维度一：资产阶级总代理人对劳资利益分配的调节阀（阶级主体）</div><p>央行是资产阶级在货币领域的中央计划委员会。美联储主席不是技术官僚，是资产阶级总代理人。利率每次调整都在裁决：给金融资本创更便宜信贷（降息），还是给产业资本创更大失业压力（加息）。</p></div>
+<div class="dim"><div class="dim-t">维度二：劳动者与资本之间的利益切换开关（阶级后果）</div><p>加息→信贷收缩→企业裁员降薪→劳动者议价能力下降→利润空间扩大。降息→廉价信贷→资产膨胀→金融资本借用债务抽取未来劳动。无论往哪个方向变，收益主要归资本，成本主要归劳动者。</p></div>
+<div class="dim"><div class="dim-t">维度三：劳动者未来剩余劳动的当期折现率（时间剥削）</div><p>30年房贷的利率=未来30年每月从工资里抽多大比例交给银行。低利率次级贷=低引诱利率拉入+浮动利率重置（加息）后月供翻倍。</p></div>
+<div class="misuse"><strong>⚠ 误用：</strong>不能简单说"降息=好，加息=坏"。降息期金融资本加大债务抽取；加息期产业资本利用失业压工资。劳动者在两种情况下都承受代价。</div>
+<div class="mass-v">降息了→银行跟你说借钱便宜→你借了30年房贷→利率重置后月供翻倍→你还不起→房子被收走。整个过程：降息是诱饵，加息是镰刀。</div>
+</div></div>
+
+<div class="entry-a"><span class="anum">2.02</span><span class="aorig">量化宽松（QE）</span><span class="aarr">→</span><span class="aname">为资本续命的资产购买</span><span class="areason">央行用公共信用和未来劳动者的被剥削义务收购金融机构有毒资产。钱极少直接进入劳动者口袋。"央行印了几万亿——你的工资涨了吗？那几万亿去了银行和基金——贷给大老板——让你借——还要收利息。"</span></div>
+<div class="entry-a"><span class="anum">2.03</span><span class="aorig">量化紧缩（QT）</span><span class="aarr">→</span><span class="aname">抽干流动性，逼迫劳动者让渡剩余</span><span class="areason">收缩流动性→资本通过提高融资成本、制造失业压力，迫使劳动者接受更低工资和更差条件。</span></div>
+<div class="entry-a"><span class="anum">2.04</span><span class="aorig">货币政策</span><span class="aarr">→</span><span class="aname">资本流动性管理的阶级控制手段</span><span class="areason">调节利率和货币供应，本质是控制资本扩张节奏，同时制造"就业—通胀"取舍让劳动者为资本积累危机买单。</span></div>
+<div class="entry-a"><span class="anum">2.05</span><span class="aorig">公开市场操作（OMO）</span><span class="aarr">→</span><span class="aname">银行资本利润的精准调控</span><span class="areason">买卖短期国债调节银行准备金，确保金融资本利润稳定，与普通劳动者利益无关。</span></div>
+<div class="entry-a"><span class="anum">2.06</span><span class="aorig">贴现率</span><span class="aarr">→</span><span class="aname">央行对商业银行的剥削分成比例</span><span class="areason">"银行的银行"通过调节贴现率决定商业银行从公共信用获资金的成本——金融上层内部的分成机制。</span></div>
+<div class="entry-a"><span class="anum">2.07</span><span class="aorig">准备金率</span><span class="aarr">→</span><span class="aname">可贷资本池的闸门调节</span><span class="areason">准备金率越高，银行可贷越少，资本扩张受控；越低，信贷扩张，劳动者被进一步卷入债务。</span></div>
+<div class="entry-a"><span class="anum">2.08</span><span class="aorig">联邦基金利率</span><span class="aarr">→</span><span class="aname">美国金融资本内部拆借剥削基准</span><span class="areason">资本与资本之间的资金成本，决定所有贷款利率，劳动者无论借钱消费还是背房贷都在此基准上被二次剥削。</span></div>
+<div class="entry-a"><span class="anum">2.09</span><span class="aorig">泰勒规则</span><span class="aarr">→</span><span class="aname">资本中央计划委员会的操作手册</span><span class="areason">名义"科学规则"，实质是资产阶级代理人根据通胀和失业（即劳动者议价能力）决策利率的公式——核心是防止劳动者获得过高议价权。</span></div>
+<div class="entry-a"><span class="anum">2.10</span><span class="aorig">前瞻性指引</span><span class="aarr">→</span><span class="aname">资本对未来剥削节奏的预告</span><span class="areason">央行提前告诉市场政策走向，让资本提前布局收割，同时给劳动者"预期"引导其行为符合资本需要。</span></div>
+</div>
+
+<!-- ═══════════ 第三编：微观经济学 ═══════════ -->
+<div class="page">
+<div class="sec-hdr">第三编 · 微观经济学（20条）</div>
+
+<div class="entry">
+<div class="entry-hd"><span class="num">3.01</span><h3>供需定律</h3><span class="badge-b">B类·双维命名</span></div>
+<div class="entry-bd">
+<div class="renaming">供需定律 → 阶级力量对比的价格表现</div>
+<div class="dim"><div class="dim-t">维度一：阶级力量对比的价格表现（去自然化）</div><p>劳动力市场工资取决于工会化率和失业后备军。住房市场价格取决于土地垄断和信贷政策。所谓"均衡价格"是阶级力量在当前条件下的暂时平衡点。</p></div>
+<div class="dim"><div class="dim-t">维度二：将"权力"伪装为"数量关系"的意识形态框架</div><p>"工资由劳动力市场供需决定"=工人被剥夺生产资料后被迫出卖劳动力（供给），资本家控制雇佣（需求）——权力不对等被框进供需曲线后变成"市场决定的公平结果"。</p></div>
+<div class="misuse"><strong>⚠ 误用：</strong>供需框架不是全然的谎言——在给定制度条件下供需确实影响价格。批判的不是"供需不存在"，而是框架把给定条件（私有制、信息不对称、买方垄断）排除在分析之外。</div>
+<div class="mass-v">老板说"工资低是因为劳动力供过于求"。你回答："供过于求是因为你把厂搬走了，让我们一整个镇的工人互相竞争。这不是市场规律，是你制造的。"</div>
+</div></div>
+
+<div class="entry">
+<div class="entry-hd"><span class="num">3.02</span><h3>稀缺性</h3><span class="badge-b">B类·双维命名</span></div>
+<div class="entry-bd">
+<div class="renaming">稀缺性 → 资本垄断造成的虚假匮乏</div>
+<div class="dim"><div class="dim-t">维度一：资本垄断造成的虚假匮乏（去自然化）</div><p>全球粮食够养活所有人，数亿人仍在挨饿——不是粮食不够，是资本垄断了土地和化肥定价。空置房几千万套，无家可归者数百万——不是房子不够，是土地和住房被资本占用为投机品。</p></div>
+<div class="dim"><div class="dim-t">维度二：将阶级分配不公归咎于自然资源有限的永恒借口（意识形态批判）</div><p>"资源稀缺"被用来解释为什么劳动者始终贫穷——不是有人囤积，是"资源稀缺"；不是分配不公，是"优化配置尚未实现"。</p></div>
+<div class="misuse"><strong>⚠ 误用：</strong>不能全盘否认资源有限——地球承载力有限是真实的。被批判的不是有限本身，而是用有限解释贫富分化。</div>
+<div class="mass-v">小区里多少空置房？超市里多少食物到保质期被扔掉？经济学教科书第一页告诉你"资源稀缺"——你合上书出门看看，稀缺的不是资源，是你的购买力。</div>
+</div></div>
+
+<div class="entry-a"><span class="anum">3.03</span><span class="aorig">边际效用</span><span class="aarr">→</span><span class="aname">在既定财富分配前提下对消费者选择的有效描述</span><span class="areason">⚠暂定可用。边际效用在描述层面有效（给定收入约束下的消费选择）。遮蔽了：偏好被资本制造、财富分配本身是阶级结果。非全盘否定——批判的不是描述效力，是它把财富分配当作不需质疑的前提。</span></div>
+<div class="entry-a"><span class="anum">3.04</span><span class="aorig">边际收益递减</span><span class="aarr">→</span><span class="aname">在固定技术条件下增加可变资本时的劳动力边际产出衰减</span><span class="areason">⚠暂定可用。这是真实的技术约束，非纯意识形态。资本利用此约束选择裁员而非缩短工时——这个选择是阶级选择。</span></div>
+<div class="entry-a"><span class="anum">3.05</span><span class="aorig">机会成本</span><span class="aarr">→</span><span class="aname">资产阶级决策的阶级代价计量</span><span class="areason">对劳动者而言，"机会成本"是在生存与尊严之间被迫选择——"要么接受低薪（放弃尊严），要么失业（放弃生存）"。</span></div>
+<div class="entry-a"><span class="anum">3.06</span><span class="aorig">弹性</span><span class="aarr">→</span><span class="aname">阶级间转嫁负担的能力差异测量</span><span class="areason">高弹性=有权力转嫁，低弹性=被困住了。不是技术参数，是权力对比的数量表现。</span></div>
+<div class="entry-a"><span class="anum">3.07</span><span class="aorig">需求价格弹性</span><span class="aarr">→</span><span class="aname">劳动者生存刚性的测量仪</span><span class="areason">必需品弹性极低（离不开）→资本反复涨价。高弹性商品说明劳动者已被压榨到只能放弃"非必要"消费。</span></div>
+<div class="entry-a"><span class="anum">3.08</span><span class="aorig">交叉弹性</span><span class="aarr">→</span><span class="aname">资本之间争夺劳动者有限工资的利润竞争指标</span><span class="areason">不同部门资本家在争夺劳动者口袋里最后几块钱。</span></div>
+<div class="entry-a"><span class="anum">3.09</span><span class="aorig">收入弹性</span><span class="aarr">→</span><span class="aname">阶级地位变化的需求映射</span><span class="areason">奢侈品高弹性反映消费社会中阶级区隔——"你开什么车、穿什么牌"决定圈层。</span></div>
+<div class="entry-a"><span class="anum">3.10</span><span class="aorig">消费者剩余</span><span class="aarr">→</span><span class="aname">劳动者被剥削幻觉的计量空间</span><span class="areason">"我本来准备多付20块，只付了15块→感觉赚了5块→忘了问为什么只值5块却要卖15块"。定价策略留出的心理空间让剥削更"可接受"。</span></div>
+<div class="entry-a"><span class="anum">3.11</span><span class="aorig">生产者剩余</span><span class="aarr">→</span><span class="aname">剩余价值的直接计量</span><span class="areason">生产者剩余就是利润——劳动者创造但被无偿占有的剩余价值。资产阶级用"剩余"替代"剥削"。</span></div>
+<div class="entry-a"><span class="anum">3.12</span><span class="aorig">无谓损失</span><span class="aarr">→</span><span class="aname">阶级统治对社会总劳动的非生产性消耗</span><span class="areason">垄断利润、官僚行政、金融投机——维持阶级统治的必要费用，由劳动者承担，不为劳动者创造任何价值。</span></div>
+<div class="entry-a"><span class="anum">3.13</span><span class="aorig">帕累托最优</span><span class="aarr">→</span><span class="aname">资产阶级福利概念的阶级固化标准</span><span class="areason">"无法在不损害任何人的情况下改善某人"=任何让劳动者改善处境的改变都会"损害"资本利润，不符合帕累托标准。资产阶级秩序的数学辩护公式。</span></div>
+<div class="entry-a"><span class="anum">3.14</span><span class="aorig">卡尔多-希克斯效率</span><span class="aarr">→</span><span class="aname">劫贫济富的理论许可证</span><span class="areason">"受益者可以补偿受损者"——现实中资本从未真正补偿。"理论上可以补偿"是资产阶级学术对劳动者的最大嘲讽。</span></div>
+<div class="entry-a"><span class="anum">3.15</span><span class="aorig">市场失灵</span><span class="aarr">→</span><span class="aname">资本无序扩张的系统性失效</span><span class="areason">不是"失灵"（暗示偶然故障），而是资本主义生产方式的固有特征和内在倾向。外部性、垄断、危机——是正常状态，不是意外。</span></div>
+<div class="entry-a"><span class="anum">3.16</span><span class="aorig">外部性</span><span class="aarr">→</span><span class="aname">资本成本转嫁的阶级通道</span><span class="areason">负外部性=利润私有化、成本社会化。正外部性=劳动者自我增值被资本无偿占有。</span></div>
+<div class="entry-a"><span class="anum">3.17</span><span class="aorig">正外部性（如教育）</span><span class="aarr">→</span><span class="aname">劳动者自我增值的社会溢出（被资本无偿占有）</span></div>
+<div class="entry-a"><span class="anum">3.18</span><span class="aorig">负外部性（如污染）</span><span class="aarr">→</span><span class="aname">资本毒害的阶级分摊</span><span class="areason">工厂利润归资本，健康成本由劳动者社区承担。</span></div>
+<div class="entry-a"><span class="anum">3.19</span><span class="aorig">公共物品</span><span class="aarr">→</span><span class="aname">阶级统治必需品的集体供给</span><span class="areason">国防、基建、基础科研——资本不愿提供（利润不足），只能由劳动者纳税承担。真正搭便车者是资本——享受公共设施不缴税。</span></div>
+<div class="entry-a"><span class="anum">3.20</span><span class="aorig">搭便车问题</span><span class="aarr">→</span><span class="aname">资产阶级对公共福利的寄生指责</span><span class="areason">"有人不工作却享受福利"——资本才是最大搭便车者：使用劳动者纳税建的公路港口电网、受过公共教育的劳动力，远低于市场价。</span></div>
+</div>
+
+<!-- ═══════════ 第四编：信息、博弈与交易成本 ═══════════ -->
+<div class="page">
+<div class="sec-hdr">第四编 · 信息、博弈与交易成本（8条）</div>
+
+<div class="entry-a"><span class="anum">4.01</span><span class="aorig">信息不对称</span><span class="aarr">→</span><span class="aname">资本对劳动的制度性认知特权</span><span class="areason">资本家知道企业真实利润和成本，劳动者不知道——由阶级地位决定，不可靠"加强信息披露"解决。信息披露的内容、格式、范围由资本决定。</span></div>
+<div class="entry-a"><span class="anum">4.02</span><span class="aorig">逆向选择</span><span class="aarr">→</span><span class="aname">资本劣质化剥削的自我强化螺旋</span><span class="areason">信息不对称下，低工资和差待遇成为市场标准。不是优胜劣汰，是谁的工资更低谁活下来——剥削方式不断往下卷。</span></div>
+<div class="entry-a"><span class="anum">4.03</span><span class="aorig">道德风险</span><span class="aarr">→</span><span class="aname">资产阶级对劳动者自我保护行为的系统性污名化</span><span class="areason">"工人有失业保险就不积极找工作"——将劳动者自我保护污名为"道德问题"。银行的"大而不倒"从来不叫道德风险。真正的道德风险在资本。</span></div>
+<div class="entry-a"><span class="anum">4.04</span><span class="aorig">博弈论</span><span class="aarr">→</span><span class="aname">阶级对抗的形式化模型：将不对称权力伪装为对称策略互动</span><span class="areason">把阶级对抗抽象成"两个玩家在给定规则下做策略选择"——抹去：规则谁定的？玩家A有军队警察，玩家B什么都没有。</span></div>
+<div class="entry-a"><span class="anum">4.05</span><span class="aorig">纳什均衡</span><span class="aarr">→</span><span class="aname">阶级力量暂时平衡的静止点</span><span class="areason">非"最优"，而是"谁都无力单方面改变"——资本偏离→利润下降，劳动者偏离→失业/镇压。不是各满意，是各不敢动。</span></div>
+<div class="entry-a"><span class="anum">4.06</span><span class="aorig">囚徒困境</span><span class="aarr">→</span><span class="aname">资本分化劳动者的经典模型</span><span class="areason">计件工资、末尾淘汰、绩效考核——设计本质让工人互相出卖，每个人选择"接受更低工资"，最终所有人处境变差。这是资本在车间里每天用来瓦解团结的操作手册。</span></div>
+<div class="entry-a"><span class="anum">4.07</span><span class="aorig">零和博弈</span><span class="aarr">→</span><span class="aname">资本与劳动在分配领域的根本对立</span><span class="areason">剩余价值分割——资本多一分利润，劳动者多一分被剥夺。资产阶级用"做大蛋糕"掩盖。</span></div>
+<div class="entry-a"><span class="anum">4.08</span><span class="aorig">交易成本</span><span class="aarr">→</span><span class="aname">资本为维持剥削关系必须支付的统治费用</span><span class="areason">找工人、签合同、监督劳动、破坏工会、贿赂官员——公有制下劳动者自觉管理，此类"统治费用"大部分消失。</span></div>
+
+<div class="maoquote">
+"工人没有祖国。决不能剥夺他们所没有的东西。"
+<span class="attr">—— 马克思 & 恩格斯《共产党宣言》</span>
+</div>
+</div>
+
+<!-- ═══════════ 第五编：国际经济学与全球化 ═══════════ -->
+<div class="page">
+<div class="sec-hdr">第五编 · 国际经济学与全球化（25条）</div>
+
+<div class="entry">
+<div class="entry-hd"><span class="num">5.01</span><h3>比较优势</h3><span class="badge-c">C类·三维概念束</span></div>
+<div class="entry-bd">
+<div class="renaming">比较优势 → 资本全球剥削布局的合理化借口</div>
+<div class="dim"><div class="dim-t">维度一：资本在全球寻找最低劳动力成本、最低环境标准和最弱劳动保护的合理化借口</div><p>李嘉图假设"资本不跨国流动"。现实中资本自由流动而劳动力被国境锁死。资本的"比较优势"=去工资最低、环保最松、工会最弱的地方建厂，卖回高工资市场。</p></div>
+<div class="dim"><div class="dim-t">维度二：中心资本对外围劳动者产业升级的系统性封锁理论</div><p>"别造芯片，你们擅长做衣服。"一旦后发国家试图升级→知识产权+技术封锁+贸易制裁。锁死低端剥削链的理论镣铐。</p></div>
+<div class="dim"><div class="dim-t">维度三：以"自由贸易"为名让各国劳动者互相竞争的全球囚徒困境</div><p>美国工人→"工作被中国抢了"。中国工人→"饭碗正被越南抢"。越南工人→"别涨工资，不然搬到孟加拉"。资本坐收所有压价利润。</p></div>
+<div class="mass-v">比较优势不是"你擅长什么做什么"——是资本挑最便宜的你。你工资低资本来了，工资涨资本就走了——还跟你说"你没优势了"。你的"优势"从来不是你的，是资本的。</div>
+</div></div>
+
+<div class="entry">
+<div class="entry-hd"><span class="num">5.02</span><h3>汇率</h3><span class="badge-c">C类·三维概念束</span></div>
+<div class="entry-bd">
+<div class="renaming">汇率 → 一国劳动者购买力被国际金融资本定价的工具</div>
+<div class="dim"><div class="dim-t">维度一：一国劳动者购买力被国际金融资本定价的工具（阶级主体）</div><p>汇率决定用本币计价的劳动者工资能买到多少进口商品。国际资本狙击一国货币→本币贬值→全体劳动者实际工资瞬间下降。做空货币的金融资本套取暴利。</p></div>
+<div class="dim"><div class="dim-t">维度二：固定汇率=将本国劳动者绑上霸权资本战车的锁链</div><p>挂钩美元=丧失货币政策自主权。美联储加息→挂钩国必须跟随→本国劳动者为霸权稳定承受紧缩与失业。</p></div>
+<div class="dim"><div class="dim-t">维度三：浮动汇率=国际金融资本对劳动者收入的无序洗牌</div><p>汇率由投机资本决定。劳动者刚拿到的工资可能因一次资本狙击贬值一半。"价格发现机制"应称为"投机商在你不知道时把你口袋里的钱抽走一半"。</p></div>
+<div class="mass-v">你一个月6000块。美联储加个息，你手里的钱购买力跌了。你什么都没做错。谁干的？不是市场，是那些在华尔街做空你国家货币的对冲基金。</div>
+</div></div>
+
+<div class="entry-a"><span class="anum">5.03</span><span class="aorig">绝对优势</span><span class="aarr">→</span><span class="aname">资本对特定劳动技能的历史性垄断（而非自然天赋）</span></div>
+<div class="entry-a"><span class="anum">5.04</span><span class="aorig">贸易条件</span><span class="aarr">→</span><span class="aname">中心资本与外围劳动的不等价交换比率</span><span class="areason">出口价格/进口价格之比=中心资本用多少制成品换取外围劳动者多少原材料。贸易条件恶化=外围劳动者用更多劳动换更少产品。</span></div>
+<div class="entry-a"><span class="anum">5.05</span><span class="aorig">经常账户</span><span class="aarr">→</span><span class="aname">全球剩余价值的跨境转移记录</span></div>
+<div class="entry-a"><span class="anum">5.06</span><span class="aorig">资本账户</span><span class="aarr">→</span><span class="aname">资本统治权的跨境买卖账本</span><span class="areason">劳动者在跨国并购中被随意转卖给不同剥削者。</span></div>
+<div class="entry-a"><span class="anum">5.07</span><span class="aorig">金融账户</span><span class="aarr">→</span><span class="aname">虚拟资本全球寻找高剥削率区域的流动地图</span></div>
+<div class="entry-a"><span class="anum">5.08</span><span class="aorig">外汇储备</span><span class="aarr">→</span><span class="aname">外围国家劳动者创造的剩余价值的冻结抵押品</span><span class="areason">出口收入以美元储存=向中心金融资本缴纳"风险保证金"。钱没用于本国劳动者福利。</span></div>
+<div class="entry-a"><span class="anum">5.09</span><span class="aorig">固定汇率</span><span class="aarr">→</span><span class="aname">将本国劳动者绑上霸权资本战车的锁链</span><span class="areason">已纳入5.02汇率概念束。</span></div>
+<div class="entry-a"><span class="anum">5.10</span><span class="aorig">浮动汇率</span><span class="aarr">→</span><span class="aname">国际资本对劳动者收入的无序洗牌</span><span class="areason">已纳入5.02汇率概念束。</span></div>
+<div class="entry-a"><span class="anum">5.11</span><span class="aorig">管理浮动</span><span class="aarr">→</span><span class="aname">名义管理，实际按资本需要切换</span><span class="areason">本币贬值利于出口时放任，贬值危及金融资本时干预。劳动者利益从未进入考虑范围。</span></div>
+<div class="entry-a"><span class="anum">5.12</span><span class="aorig">购买力平价（PPP）</span><span class="aarr">→</span><span class="aname">相同劳动在不同国家被定价天差地别的国际比较尺</span><span class="areason">同一工人美国买一套房，孟加拉买一碗饭。暴露的不是"各国物价不同"，是资本利用国境将全球劳动者分割成不同定价区间。</span></div>
+<div class="entry-a"><span class="anum">5.13</span><span class="aorig">蒙代尔-弗莱明模型</span><span class="aarr">→</span><span class="aname">资本统治下各国劳动者命运被数学公式化锁定的无权证明</span></div>
+<div class="entry-a"><span class="anum">5.14</span><span class="aorig">不可能三角（三元悖论）</span><span class="aarr">→</span><span class="aname">国际资本对劳动者国家主权的三重锁链</span><span class="areason">资本强迫三选二：放弃货币主权或放弃汇率稳定。资本自由流动永远被当作不可动摇前提。</span></div>
+<div class="entry-a"><span class="anum">5.15</span><span class="aorig">国际收支平衡表（BOP）</span><span class="aarr">→</span><span class="aname">全球阶级压迫的复式记账</span></div>
+<div class="entry-a"><span class="anum">5.16</span><span class="aorig">全球价值链（GVC）</span><span class="aarr">→</span><span class="aname">跨国资本对全球劳动者的分段剥削链</span><span class="areason">苹果手机：中国工人得极小份额，品牌利润归美国。每道工序工人都在被剥削，只有最上面那批人在数钱。</span></div>
+<div class="entry-a"><span class="anum">5.17</span><span class="aorig">倾销</span><span class="aarr">→</span><span class="aname">资本以目标国劳动者失业为代价的全球市场份额清场战</span><span class="areason">低于成本价在海外销售→击垮目标国生产者（即该国工人阶级的生计来源）→取得垄断后提价。倒下的是千百万劳动者的饭碗。</span></div>
+<div class="entry-a"><span class="anum">5.18</span><span class="aorig">关税</span><span class="aarr">→</span><span class="aname">资产阶级国家为不同派系资本划分势力范围</span><span class="areason">工人只在被本国资本剥削和被外国资本剥削之间切换。</span></div>
+<div class="entry-a"><span class="anum">5.19</span><span class="aorig">非关税壁垒</span><span class="aarr">→</span><span class="aname">中心国家资本封锁外围劳动者产业升级的制度围墙</span><span class="areason">造不出芯片时说"自由贸易"，快造出时说"技术封锁""国家安全"。</span></div>
+<div class="entry-a"><span class="anum">5.20</span><span class="aorig">贸易创造与贸易转移</span><span class="aarr">→</span><span class="aname">资本重组全球剥削版图的账本调整</span></div>
+<div class="entry-a"><span class="anum">5.21</span><span class="aorig">主权债务危机</span><span class="aarr">→</span><span class="aname">国际金融资本以债务为武器对主权国家劳动者的结构性改造</span><span class="areason">IMF备忘录替代坦克——以"援助"为条件强制削减福利、私有化、压工资。收债式结构调整。</span></div>
+<div class="entry-a"><span class="anum">5.22</span><span class="aorig">特别提款权（SDR）</span><span class="aarr">→</span><span class="aname">霸权货币体系的集体合法性背书</span></div>
+<div class="entry-a"><span class="anum">5.23</span><span class="aorig">布雷顿森林体系</span><span class="aarr">→</span><span class="aname">二战后美国资本全球统治的货币制度框架</span><span class="areason">以美元为中心的全球剩余价值抽取体系。美国通过印钞向全球征收铸币税。</span></div>
+<div class="entry-a"><span class="anum">5.24</span><span class="aorig">资本流动/热钱</span><span class="aarr">→</span><span class="aname">国际投机资本对各国劳动者生存条件的即时操控工具</span></div>
+<div class="entry-a"><span class="anum">5.25</span><span class="aorig">全球化/经济一体化</span><span class="aarr">→</span><span class="aname">跨国资本打破国境限制统一剥削全球劳动者的空间整合过程</span><span class="areason">不是"世界变平了"，是资本的剥削空间被扩展到地球每一个角落，使资本可在全球挑选条件最优的劳动者群体。</span></div>
+</div>
+
+<!-- ═══════════ 第六编：金融与资本市场 ═══════════ -->
+<div class="page">
+<div class="sec-hdr">第六编 · 金融与资本市场（24条）</div>
+
+<div class="entry">
+<div class="entry-hd"><span class="num">6.01</span><h3>资产</h3><span class="badge-c">C类·双维概念束</span></div>
+<div class="entry-bd">
+<div class="renaming">资产 → 对他人劳动的法律支配凭证</div>
+<div class="dim"><div class="dim-t">维度一：对他人劳动的法律支配凭证（去物化）</div><p>股票、债券、房产证不是"物"——是国家暴力和法律背书的、让持有者可以不劳动而占有他人劳动成果的权利证书。持有一股苹果股票=有权按比例分走富士康工人和全球苹果产业链上所有劳动者创造的剩余价值。</p></div>
+<div class="dim"><div class="dim-t">维度二：不劳而获参与剩余价值分配的入场券（功能揭露）</div><p>所有"资产收入"——股息、利息、租金——全部来自劳动者创造的剩余价值。持有资产≠参与生产，持有资产=参与分赃。</p></div>
+<div class="misuse"><strong>⚠ 误用：</strong>投资语境须区分实物资产vs金融资产vs控股股权vs少数股权。小股东=没有控制权的被动剩余利润索取权持有者——不等同于资本家。</div>
+<div class="mass-v">你有10万块存款，一年利息300。银行拿你的钱贷给老板→老板雇工人→工人干一年创造10万→分5万→老板留3万→银行收2万利息→分你300。你存的不叫"资产"——你存的是工人干活的权利。</div>
+</div></div>
+
+<div class="entry">
+<div class="entry-hd"><span class="num">6.02</span><h3>MBS / 资产证券化</h3><span class="badge-c">C类·双维概念束</span></div>
+<div class="entry-bd">
+<div class="renaming">MBS → 住房劳动者的集体债务债券抵押品</div>
+<div class="dim"><div class="dim-t">维度一：住房劳动者的集体债务债券抵押品（底层资产揭露）</div><p>MBS的"底层资产"是几百万个劳动者家庭的房贷——即他们的居住权。华尔街交易MBS=交易几百万个家庭未来30年的居住安全。</p></div>
+<div class="dim"><div class="dim-t">维度二：将劳动者未来几十年劳动时间打包为可交易金融产品的剥削集合（时间剥削）</div><p>把劳动者的债务集中打包→标上价格→切成小块→在全球金融市场上反复倒卖。劳动者一生的劳动时间变成交易大厅里一行行情代码。</p></div>
+<div class="misuse"><strong>⚠ 误用：</strong>不能一概说"证券化就是坏"。劳动者合作组织的联合信贷、互助保险也可用集合融资。批判的是资本主导、以利息差价为利润来源的证券化。</div>
+<div class="mass-v">你每月还3000块房贷→银行把你和几万个你打包成大债券→华尔街喊"每年几亿利息！"→全球投资者来买。你的月供变成沙特王子的跑车。你上班还房贷，养了一地球的有钱人。这叫MBS。</div>
+</div></div>
+
+<div class="entry">
+<div class="entry-hd"><span class="num">6.03</span><h3>衍生品</h3><span class="badge-c">C类·双维概念束</span></div>
+<div class="entry-bd">
+<div class="renaming">衍生品 → 对剩余价值的二次赌博合约</div>
+<div class="dim"><div class="dim-t">维度一：对劳动者已创造和未来将创造的剩余价值进行二次分配赌博的合约</div><p>"衍生"自基础资产（股票、债券、大宗商品）→基础资产价值又"衍生"自劳动者剩余劳动。对已被抽取一次的剩余价值进行第二次抽取和再分配。</p></div>
+<div class="dim"><div class="dim-t">维度二：金融资本之间互相转嫁剥削风险的零和对赌</div><p>期货、期权、掉期——不是"风险管理"（广告词），是资本间重新分配谁吃利润谁担风险。劳动者不参与对赌，崩盘时却承担全部代价。</p></div>
+<div class="mass-v">你厂里交的养老金被基金经理拿去赌了——赌输了，你老了没钱；赌赢了，交易员分红。你全程不知道。</div>
+</div></div>
+
+<div class="entry-a"><span class="anum">6.04</span><span class="aorig">负债</span><span class="aarr">→</span><span class="aname">劳动者未来的被剥削义务</span><span class="areason">个人层面：未来劳动时间已提前抵押。宏观层面：国家债务=资产阶级国家已把未来几代劳动者的劳动抵押给今天金融资本。</span></div>
+<div class="entry-a"><span class="anum">6.05</span><span class="aorig">股票（权益）</span><span class="aarr">→</span><span class="aname">剩余价值的分配权证</span><span class="areason">⚠暂定可用。投资教学中先讲"可转让剩余利润索取权凭证"，再进阶级命名。小股东=没有控制权的被动剩余利润索取权持有者。</span></div>
+<div class="entry-a"><span class="anum">6.06</span><span class="aorig">债券（固定收益）</span><span class="aarr">→</span><span class="aname">优先剥削权凭证</span><span class="areason">比股权更早、更确定地从劳动者身上抽取剩余，且不承担经营风险。</span></div>
+<div class="entry-a"><span class="anum">6.07</span><span class="aorig">期货/远期</span><span class="aarr">→</span><span class="aname">对未来剥削成果的预定合同</span><span class="areason">农民卖期货=被迫让中间商提前锁定剥削份额。粮食还没种，利润已被锁。</span></div>
+<div class="entry-a"><span class="anum">6.08</span><span class="aorig">期权</span><span class="aarr">→</span><span class="aname">剥削机会的选择权交易</span><span class="areason">资本之间买卖"未来以特定条件剥削劳动者"的机会。</span></div>
+<div class="entry-a"><span class="anum">6.09</span><span class="aorig">掉期</span><span class="aarr">→</span><span class="aname">不同来源剥削现金流的交换游戏</span></div>
+<div class="entry-a"><span class="anum">6.10</span><span class="aorig">信用违约掉期（CDS）</span><span class="aarr">→</span><span class="aname">对剥削链条断裂的对赌保险</span><span class="areason">赌的是"劳动者的剩余劳动还能被抽取多久"。</span></div>
+<div class="entry-a"><span class="anum">6.11</span><span class="aorig">系统性风险</span><span class="aarr">→</span><span class="aname">全球剥削体系的自我毁灭风险</span><span class="areason">金融剥削链条同时断裂→资本统治面临崩溃→劳动者承担失业破产→资本被纳税人救活。</span></div>
+<div class="entry-a"><span class="anum">6.12</span><span class="aorig">影子银行</span><span class="aarr">→</span><span class="aname">规避监管的资本掠夺地下网络</span></div>
+<div class="entry-a"><span class="anum">6.13</span><span class="aorig">做空</span><span class="aarr">→</span><span class="aname">押注他人劳动成果贬值的投机</span><span class="areason">做空者押注某家企业的劳动者群体将失败、被裁员、被降薪——从中获利。资本间互相蚕食。</span></div>
+<div class="entry-a"><span class="anum">6.14</span><span class="aorig">杠杆</span><span class="aarr">→</span><span class="aname">用少数自有资本撬动对大量他人劳动的支配权</span><span class="areason">区分：企业杠杆（借雇更多劳动者）、金融杠杆（借交易资产放大投机）、劳动者杠杆（房贷=被迫加杠杆买必要生活资料，最脆弱）。</span></div>
+<div class="entry-a"><span class="anum">6.15</span><span class="aorig">对冲</span><span class="aarr">→</span><span class="aname">资本之间互相转嫁剥削风险的技术操作</span><span class="areason">原1-5命名理由曾错误拷贝"杠杆"内容，已修正。</span></div>
+<div class="entry-a"><span class="anum">6.16</span><span class="aorig">流动性</span><span class="aarr">→</span><span class="aname">剥削成果的变现速度</span><span class="areason">对劳动者：工资多快被房租、贷款、消费吸走。对资本：对劳动者的索取权多快换成现金。</span></div>
+<div class="entry-a"><span class="anum">6.17</span><span class="aorig">资本资产定价模型（CAPM）</span><span class="aarr">→</span><span class="aname">剥削收益率的数学美化公式</span><span class="areason">把剩余价值来源伪装成"风险补偿"。"风险"只是资本间分配剩余价值的波动。</span></div>
+<div class="entry-a"><span class="anum">6.18</span><span class="aorig">有效市场假说（EMH）</span><span class="aarr">→</span><span class="aname">金融剥削合法性的学术辩护词</span><span class="areason">声称价格已反映所有信息→"市场是公平的"。功能：告诉劳动者"你炒股亏钱是你不够聪明，不是游戏本身给资本设计的"。</span></div>
+<div class="entry-a"><span class="anum">6.19</span><span class="aorig">行为金融学</span><span class="aarr">→</span><span class="aname">将金融危机根源从资本制度归咎于"人的非理性心理"的学术替换操作</span></div>
+<div class="entry-a"><span class="anum">6.20</span><span class="aorig">风险价值（VaR）</span><span class="aarr">→</span><span class="aname">资本对自身崩溃概率的虚假安全感数学模型</span><span class="areason">VaR告诉资本"最大可能损失是X"。2008年：所有相关性假设失效。虚假安全感→敢加杠杆→崩盘远超预测。</span></div>
+<div class="entry-a"><span class="anum">6.21</span><span class="aorig">ESG投资</span><span class="aarr">→</span><span class="aname">给剥削涂上道德胭脂</span><span class="areason">绿色+社会责任+治理=同样的剥削，更好听的名字。</span></div>
+<div class="entry-a"><span class="anum">6.22</span><span class="aorig">高收益债券（垃圾债）</span><span class="aarr">→</span><span class="aname">对高风险剥削对象的掠夺凭证</span><span class="areason">高收益是对"剥削对象可能随时断裂"的风险奖励。劳动者承担真实失业。</span></div>
+<div class="entry-a"><span class="anum">6.23</span><span class="aorig">纾困计划（Bailout）</span><span class="aarr">→</span><span class="aname">资本亏损的社会化转移</span><span class="areason">资产阶级国家在资本发高烧时，强行把劳动者的被子盖到资本身上。</span></div>
+<div class="entry-a"><span class="anum">6.24</span><span class="aorig">证券化（一般概念）</span><span class="aarr">→</span><span class="aname">将劳动者未来劳动打包为可交易证券的操作</span><span class="areason">技术本身价值中立。批判的是资本主导、以利息差价为利润来源的证券化。</span></div>
+</div>
+
+<!-- ═══════════ 第七编：劳动经济学 ═══════════ -->
+<div class="page">
+<div class="sec-hdr">第七编 · 劳动经济学（20条）</div>
+
+<div class="entry">
+<div class="entry-hd"><span class="num">7.01</span><h3>失业</h3><span class="badge-c">C类·三维概念束</span></div>
+<div class="entry-bd">
+<div class="renaming">失业 → 产业后备军（马克思原概念）</div>
+<div class="dim"><div class="dim-t">维度一：产业后备军（经济机制）</div><p>失业不是"经济运行不畅的暂时结果"，是资本积累的必然产物和必要条件。资本积累→机器替代工人→部分劳动者被排斥→形成可供资本随时调用的廉价劳动力池。后备军功能：随时可调用+在岗工人的纪律工具（你敢加薪，后备军有人顶替你）。</p></div>
+<div class="dim"><div class="dim-t">维度二：维持剥削秩序的失业蓄水池率（阶级功能——即对"自然失业率"的重命名）</div><p>所谓"自然"失业率=资产阶级在"压低工资"与"维持消费"之间权衡的结果。太低→工人议价强→利润降。太高→消费崩溃→危机。资本要的是最优剥削率——刚好让工人不敢反抗，又不至于买不起。</p></div>
+<div class="dim"><div class="dim-t">维度三：被资本体系排除在外的无效人口（个体经验）</div><p>放弃找工作的、退回家庭无偿劳动的——不算"失业"算"退出劳动力市场"。被彻底排除的人可能是官方失业率的2—3倍。没支付能力的人在资本眼中不存在。</p></div>
+<div class="misuse"><strong>⚠ 误用：</strong>只用"产业后备军"→过于学术化。只用"失业蓄水池率"→误导为央行可随意控制。两者必须配合使用。</div>
+<div class="mass-v">失业不是命不好——是老板需要有批人没工作，这样在职的人不敢要涨工资。每次新闻说"失业率降到自然失业率以下，经济过热了"——翻译："工人议价能力太高了，该加息让他们失业了。"</div>
+</div></div>
+
+<div class="entry">
+<div class="entry-hd"><span class="num">7.02</span><h3>人力资本</h3><span class="badge-b">B类·双维命名</span></div>
+<div class="entry-bd">
+<div class="renaming">人力资本 → 被量化为资本会计科目的活劳动</div>
+<div class="dim"><div class="dim-t">维度一：被量化为资本会计科目的活劳动（去自然化）</div><p>把劳动者的能力称为"资本"→暗示他拥有生产资料。实际上唯一的"资本"是他必须出卖给真正资本家的劳动力。</p></div>
+<div class="dim"><div class="dim-t">维度二：让劳动者为"自己出卖劳动力的能力"而自我投资并感谢资本的驯化话语（意识形态）</div><p>教育费用由劳动者承担，技能风险由劳动者承担——但生产率增长的大部分转化为资本占有的额外剩余价值。自己花钱让自己变成更高效地被剥削者，还感谢资本的"成长机会"。</p></div>
+<div class="mass-v">老板说"别看工资，看成长空间，投资你自己的人力资本"——翻译：你加班学新技能，多创造的利润归老板。你投入的培训费和时间自己出，这叫"自我投资"。</div>
+</div></div>
+
+<div class="entry">
+<div class="entry-hd"><span class="num">7.03</span><h3>最低工资</h3><span class="badge-b">B类·双维命名</span></div>
+<div class="entry-bd">
+<div class="renaming">最低工资 → 阶级斗争成果冻结为制度形态的工资底线</div>
+<div class="dim"><div class="dim-t">维度一：阶级斗争成果冻结为制度形态的工资底线（历史维度）</div><p>最低工资不是资本良心发现的"给予"。它是工人运动用罢工、流血和组织换来的制度性让步。八小时工作制、禁止童工、最低工资——每一条都是用命换的。</p></div>
+<div class="dim"><div class="dim-t">维度二：资产阶级国家为劳动力再生产设定的最低生存配给（现行功能——当被冻结在过低水平时）</div><p>长期冻结在远低于实际生存成本的水平→功能反转——从斗争成果变成资本合法支付低工资的掩护。</p></div>
+<div class="mass-v">最低工资是你爷爷那辈罢工流血换来的。资产阶级说最低工资太高会伤害经济——他们什么时候说过利润太高会伤害经济？</div>
+</div></div>
+
+<div class="entry-a"><span class="anum">7.04</span><span class="aorig">劳动力参与率</span><span class="aarr">→</span><span class="aname">可剥削人口的比例</span><span class="areason">衡量多少人被纳入资本剥削体系。退出"劳动力市场"者（家庭主妇、放弃求职者）被统计为"不参与"——尽管他们无偿创造使用价值。</span></div>
+<div class="entry-a"><span class="anum">7.05</span><span class="aorig">摩擦性失业</span><span class="aarr">→</span><span class="aname">资本新陈代谢的淘汰缓冲期</span><span class="areason">这段"摩擦"期是资本用来压低在岗工人工资的宝贵时间窗口。</span></div>
+<div class="entry-a"><span class="anum">7.06</span><span class="aorig">结构性失业</span><span class="aarr">→</span><span class="aname">资本技术升级造成的人肉冗余</span><span class="areason">工人技能与岗位不匹配——不是因为工人"学错了"，是因资本随时抛弃旧产业及其依赖的劳动者群体。</span></div>
+<div class="entry-a"><span class="anum">7.07</span><span class="aorig">技术性失业</span><span class="aarr">→</span><span class="aname">资本用机器替代活劳动后将劳动者当垃圾清理</span><span class="areason">技术进步→生产率提高→机器替代人→利润归资本→失去岗位的工人承担全部代价。</span></div>
+<div class="entry-a"><span class="anum">7.08</span><span class="aorig">工会化率</span><span class="aarr">→</span><span class="aname">劳动者集体抵抗资本剥削的组织强度指标</span><span class="areason">资产阶级用此"中性统计"掩盖几十年系统性瓦解工会的阶级斗争。</span></div>
+<div class="entry-a"><span class="anum">7.09</span><span class="aorig">基尼系数</span><span class="aarr">→</span><span class="aname">资产阶级劫掠成果的集中度测量仪</span><span class="areason">用0到1描述不平等——从不追问不平等从何而来。把剥削和占有包装为"分配问题"——仿佛调整税率就能解决。</span></div>
+<div class="entry-a"><span class="anum">7.10</span><span class="aorig">洛伦兹曲线</span><span class="aarr">→</span><span class="aname">阶级鸿沟的可视化证据</span><span class="areason">少数人占有多数财富，却不指出曲线形状是由生产资料私有制决定的。</span></div>
+<div class="entry-a"><span class="anum">7.11</span><span class="aorig">绝对贫困</span><span class="aarr">→</span><span class="aname">资本剥削的最低生存边界</span><span class="areason">低于此线连被剥削的资格都没有——是资本眼中的"无效人口"。</span></div>
+<div class="entry-a"><span class="anum">7.12</span><span class="aorig">相对贫困</span><span class="aarr">→</span><span class="aname">被经济增长甩出船底的阶级证明</span><span class="areason">社会平均财富增长的同时底层劳动者份额下降——这是资本积累的必然数学。</span></div>
+<div class="entry-a"><span class="anum">7.13</span><span class="aorig">中等收入陷阱</span><span class="aarr">→</span><span class="aname">外围国家劳动者被中心资本锁死在低端剥削链的结构性困境</span></div>
+<div class="entry-a"><span class="anum">7.14</span><span class="aorig">包容性增长</span><span class="aarr">→</span><span class="aname">资本在不改变剥削关系的前提下吐出来一点的安抚策略</span><span class="areason">"包容"=资本仍占有最大份额和切蛋糕权，从自己份里拿一丁点安抚底层。</span></div>
+<div class="entry-a"><span class="anum">7.15</span><span class="aorig">库兹涅茨曲线</span><span class="aarr">→</span><span class="aname">资产阶级发展阶段的"先忍忍以后会好的"承诺</span><span class="areason">声称不平等先恶化后改善——历史证明改善是劳动者斗争的结果，不是"发展阶段到了"。</span></div>
+<div class="entry-a"><span class="anum">7.16</span><span class="aorig">可持续发展</span><span class="aarr">→</span><span class="aname">为资本无限积累戴上环保枷锁的妥协口号</span><span class="areason">双维：①逻辑矛盾——资本追求无限利润怎可能不损害后代？②将生态责任从资本转嫁给"消费者选择"。</span></div>
+<div class="entry-a"><span class="anum">7.17</span><span class="aorig">碳定价</span><span class="aarr">→</span><span class="aname">用金钱赎买继续污染的权利</span><span class="areason">把生态破坏合法化为可计价的经营成本。</span></div>
+<div class="entry-a"><span class="anum">7.18</span><span class="aorig">绿色经济</span><span class="aarr">→</span><span class="aname">资本对生态危机的商业变现</span><span class="areason">新能源、电动车——仍是资本驱动，创造新剥削（锂矿童工），消费端"绿色溢价"再次回到资本手中。</span></div>
+<div class="entry-a"><span class="anum">7.19</span><span class="aorig">碳排放交易体系（ETS）</span><span class="aarr">→</span><span class="aname">污染权被金融化的投机市场</span></div>
+<div class="entry-a"><span class="anum">7.20</span><span class="aorig">资源诅咒</span><span class="aarr">→</span><span class="aname">国际资本对资源富国劳动者的双重掠夺机制</span></div>
+
+<div class="maoquote">
+"在资本主义社会中，人是按照他对资本的价值来被衡量的。"
+<span class="attr">—— 马克思</span>
+</div>
+</div>
+
+<!-- ═══════════ 第九编：产业组织与平台资本 ═══════════ -->
+<div class="page">
+<div class="sec-hdr">第九编 · 产业组织与平台资本（13条）</div>
+
+<div class="entry">
+<div class="entry-hd"><span class="num">9.01</span><h3>专利 / 知识产权</h3><span class="badge-c">C类·三维概念束</span></div>
+<div class="entry-bd">
+<div class="renaming">专利 → 技术垄断的合法性特许状</div>
+<div class="dim"><div class="dim-t">维度一：技术垄断的合法性特许状——国家暴力背书的排他性控制权（法律本质）</div><p>不是"保护发明者"——是国家用法律强制力赋予资本对技术的排他性控制。职务发明下，发明者本人都不允许使用自己的发明。</p></div>
+<div class="dim"><div class="dim-t">维度二：知识公有物的私有化产权证——将公共投入的成果圈占为私人租金来源</div><p>互联网基础协议→公共资助。多数药物基础研究→NIH资助。资本在公共投入上商业开发→专利圈占→向全社会收使用费。</p></div>
+<div class="dim"><div class="dim-t">维度三：中心资本封锁外围劳动者产业升级的知识围墙（全球阶级后果）</div><p>药品专利让低收入国家劳动者吃不起救命药。技术专利阻止后发国家模仿学习。造不出芯片时他们说"自由贸易"，快造出时说"技术封锁"。</p></div>
+<div class="mass-v">你纳的税资助了大学实验室→药企拿成果→申请专利→同一颗药印度卖5块，美国卖500。你的税钱养研发，成果被资本圈去私人生意，你买不起药。</div>
+</div></div>
+
+<div class="entry-a"><span class="anum">9.02</span><span class="aorig">规模经济</span><span class="aarr">→</span><span class="aname">大资本利用采购垄断、技术壁垒和对劳动力的压价能力挤垮小资本并压低工资</span></div>
+<div class="entry-a"><span class="anum">9.03</span><span class="aorig">范围经济</span><span class="aarr">→</span><span class="aname">资本跨行业多领域统一榨取劳动者的协同剥削优势</span></div>
+<div class="entry-a"><span class="anum">9.04</span><span class="aorig">自然垄断</span><span class="aarr">→</span><span class="aname">被"自然化"的资本独占：将公共资源包装为"技术上只能由一家经营"</span></div>
+<div class="entry-a"><span class="anum">9.05</span><span class="aorig">垄断竞争</span><span class="aarr">→</span><span class="aname">少数大资本通过品牌分化和产品线细分制造的选择假象</span><span class="areason">你以在选——实际上不同"品牌"背后是同一批资本。</span></div>
+<div class="entry-a"><span class="anum">9.06</span><span class="aorig">寡头垄断</span><span class="aarr">→</span><span class="aname">少数资本对市场的联合统治：共同定价、共同压工资、共同筑高壁垒</span></div>
+<div class="entry-a"><span class="anum">9.07</span><span class="aorig">价格歧视</span><span class="aarr">→</span><span class="aname">按劳动者支付能力精准榨取：不留下一个铜板的消费者剩余</span><span class="areason">学生打折、老人优惠——不是慈善，是把不同群体的剩余购买力榨干。</span></div>
+<div class="entry-a"><span class="anum">9.08</span><span class="aorig">进入壁垒</span><span class="aarr">→</span><span class="aname">资本为保住垄断超额利润而人为修筑的制度围墙</span><span class="areason">不仅是资本间门槛——劳工自建合作社也被排斥在外。</span></div>
+<div class="entry-a"><span class="anum">9.09</span><span class="aorig">创造性破坏</span><span class="aarr">→</span><span class="aname">资本摧毁旧产业和劳动者生计后用"创造"来美化屠杀的英雄化叙事</span><span class="areason">被破坏的是劳动者几十年的生计，被创造的是资本的利润。</span></div>
+<div class="entry-a"><span class="anum">9.10</span><span class="aorig">网络效应</span><span class="aarr">→</span><span class="aname">资本利用用户规模锁定劳动者和消费者的数字围墙</span><span class="areason">用户越多→越难离开→竞争者越难入场→资本获得双头议价优势。</span></div>
+<div class="entry-a"><span class="anum">9.11</span><span class="aorig">平台经济</span><span class="aarr">→</span><span class="aname">资本对零工劳动者的数字化控制体系：有算法管理而无雇佣责任</span><span class="areason">三要素：算法管理取代管理者、资产外包（车/手机/房由劳动者自备）、消费者成为无意识监工（评分系统替资本执行纪律）。</span></div>
+<div class="entry-a"><span class="anum">9.12</span><span class="aorig">独角兽</span><span class="aarr">→</span><span class="aname">风险资本用巨额资金催生的未来垄断者</span><span class="areason">"创新"实质是资本集中——以低于成本价逼死所有竞争者→垄断→提价和压榨。</span></div>
+<div class="entry-a"><span class="anum">9.13</span><span class="aorig">知识产权（IP）</span><span class="aarr">→</span><span class="aname">同9.01专利概念束，合并处理</span></div>
+
+<div class="hl-box">真正的创新，应当是打破资本对技术的垄断，让知识成为全人类的共同财富，让生产服务于人的需要而非资本的增殖。</div>
+</div>
+
+<!-- ═══════════ 第十编：行为经济学 ═══════════ -->
+<div class="page">
+<div class="sec-hdr">第十编 · 行为经济学与意识形态控制（7条）</div>
+
+<div class="entry-a"><span class="anum">10.01</span><span class="aorig">理性人假设</span><span class="aarr">→</span><span class="aname">资本为劳动者设定的理想行为模板</span><span class="areason">可以被价格信号精准引导、不会团结反抗的自动化决策单元。核心功能：将"服从市场信号=理性=不反抗"植入经济学逻辑。</span></div>
+<div class="entry-a"><span class="anum">10.02</span><span class="aorig">有限理性</span><span class="aarr">→</span><span class="aname">资本利用劳动者认知局限进行操控的操作空间</span><span class="areason">边界：劳动者不是无限可操控的，认知局限也会反噬资本。</span></div>
+<div class="entry-a"><span class="anum">10.03</span><span class="aorig">前景理论/损失厌恶</span><span class="aarr">→</span><span class="aname">劳动者在长期物质匮乏中形成的对生存资源被剥夺的合理恐惧</span><span class="areason">不是天生认知偏差，是长期被剥削形成的本能。资本反向利用此恐惧压制反抗。但当累积损失超阈值，劳动者也会启动"既然一无所有就不怕再失去"的反抗。</span></div>
+<div class="entry-a"><span class="anum">10.04</span><span class="aorig">沉没成本谬误</span><span class="aarr">→</span><span class="aname">资本用历史投入绑架劳动者的心理锁链</span><span class="areason">长期合同、工龄工资、职业培训→"已经付出这么多不能离开"→忍受越来越差的待遇。</span></div>
+<div class="entry-a"><span class="anum">10.05</span><span class="aorig">锚定效应</span><span class="aarr">→</span><span class="aname">资本通过第一报价锁定谈判起点的定价权力</span><span class="areason">工资谈判先报低价为"锚"，商品先标高价再打折。</span></div>
+<div class="entry-a"><span class="anum">10.06</span><span class="aorig">心理账户</span><span class="aarr">→</span><span class="aname">资本通过分割劳动者收入来源诱导分别被消费、借贷和投资</span><span class="areason">工资/奖金/补贴/退税→每笔钱不同心理归属→资本设计不同产品一一对应。</span></div>
+<div class="entry-a"><span class="anum">10.07</span><span class="aorig">助推（Nudge）</span><span class="aarr">→</span><span class="aname">资产阶级国家在不改变权力结构的前提下"温柔引导"劳动者做出符合资本利益的选择</span><span class="areason">不改变谁有权设定规则，只改变规则包装——让劳动者自愿接受剥削并感谢"选择的自由"。</span></div>
+
+<div class="maoquote">
+"不是人们的意识决定人们的存在，相反，是人们的社会存在决定人们的意识。"
+<span class="attr">—— 马克思《政治经济学批判》</span>
+</div>
+</div>
+
+<!-- ═══════════ 第十一编：政治经济学与制度 ═══════════ -->
+<div class="page">
+<div class="sec-hdr">第十一编 · 政治经济学与制度（7条）</div>
+
+<div class="entry">
+<div class="entry-hd"><span class="num">11.01</span><h3>私有产权</h3><span class="badge-c">C类·三维概念束</span></div>
+<div class="entry-bd">
+<div class="renaming">产权 → 阶级占有关系的法律暴力背书</div>
+<div class="dim"><div class="dim-t">维度一：阶级占有关系的法律暴力背书——不是"对物的权利"，而是"人与人之间关于物的排他性支配关系"（去物化）</div><p>产权安全不来自"物本身属于你"——来自警察、法院、监狱和军队执行"别人不能碰它"的秩序。</p></div>
+<div class="dim"><div class="dim-t">维度二：资产阶级国家对生产资料私人独占的制度性保护（阶级功能）</div><p>将"谁占有工厂"永久封进法律和道德的保险柜。</p></div>
+<div class="dim"><div class="dim-t">维度三：将"阶级支配"伪装为"个人权利"的意识形态操作（话语功能）</div><p>"神圣不可侵犯"——将资产阶级对生产资料的垄断占有包装为天赋人权。</p></div>
+<div class="mass-v">老板说"这厂是我的私有财产"。你问"为什么是你的？"他说"我买的"。你再问"买厂的钱哪来的？工人干12小时创造的利润够买两栋厂了——为什么厂还在你名下，工人还在租房？"私有产权=警察和法院保证"老板永远有厂，工人永远没厂"的制度。</div>
+</div></div>
+
+<div class="entry-a"><span class="anum">11.02</span><span class="aorig">寻租</span><span class="aarr">→</span><span class="aname">资产阶级内部不同派系围绕国家权力展开的分赃博弈</span><span class="areason">双维：①本质——不是偏离"正常市场"的异常行为，而是资产阶级通过国家权力获取超额利润的常态。②话语功能——制造"存在干净的资本主义"的幻觉。</span></div>
+<div class="entry-a"><span class="anum">11.03</span><span class="aorig">制度</span><span class="aarr">→</span><span class="aname">统治阶级意志的物化形式</span><span class="areason">不是中性博弈规则——每一项制度都规定了谁占有、谁支配、谁获得剩余，并让这一切看起来"理所当然"。</span></div>
+<div class="entry-a"><span class="anum">11.04</span><span class="aorig">国家能力</span><span class="aarr">→</span><span class="aname">资产阶级专政的执行效率</span><span class="areason">对内镇压反抗、维护积累秩序，对外为本国资本开辟市场、保障投资条件。</span></div>
+<div class="entry-a"><span class="anum">11.05</span><span class="aorig">裙带资本主义</span><span class="aarr">→</span><span class="aname">资产阶级统治的诚实版本</span><span class="areason">暗示存在"干净的"资本主义——但资本与国家的结合是制度常态。裙带只是没把关系包装好。</span></div>
+<div class="entry-a"><span class="anum">11.06</span><span class="aorig">华盛顿共识</span><span class="aarr">→</span><span class="aname">国际资本对外围国家劳动者进行结构调整的标准操作手册</span><span class="areason">私有化+自由化+稳定化=公共财富廉价卖资本+打开国门+紧缩压制劳动者。</span></div>
+<div class="entry-a"><span class="anum">11.07</span><span class="aorig">资源诅咒</span><span class="aarr">→</span><span class="aname">国际资本对资源富国劳动者的双重掠夺机制</span><span class="areason">同7.20。</span></div>
+
+<div class="hl-box">权力不是等来的，不是求来的，不是投票投来的——是组织起来的无产阶级，用自己的意志和行动，从资本手里一寸一寸夺回来的。</div>
+</div>
+
+<!-- ═══════════ 第十二编：计量经济学 ═══════════ -->
+<div class="page">
+<div class="sec-hdr">第十二编 · 计量经济学与实证方法（10条）</div>
+<div class="hl-box">⚠ 本编总原则：批判的不是工具本身，而是工具在资本主义社会科学体制中的阶级用途、研究边界、资助结构和政策功能。计量方法本身价值中立——刻度尺既可以量身高也可以量刑具。禁止粗暴贴"剥削工具"标签。</div>
+
+<div class="entry-a"><span class="anum">12.01</span><span class="aorig">计量经济学方法论（整体）</span><span class="aarr">→</span><span class="aname">在不质疑私有制前提下对资本主义运行细节进行量化测量的技术工具集</span><span class="areason">同时在现有体制下是为资产阶级政策选择提供"科学依据"的数据生产机器。双维处理。</span></div>
+<div class="entry-a"><span class="anum">12.02</span><span class="aorig">内生性</span><span class="aarr">→</span><span class="aname">🚫 暂缓命名</span><span class="areason">真实的统计技术问题（遗漏变量、反向因果、测量误差）。实践中当研究者将阶级变量系统性地留在误差项中时，才成为清洗阶级关系的操作。</span></div>
+<div class="entry-a"><span class="anum">12.03</span><span class="aorig">工具变量（IV）</span><span class="aarr">→</span><span class="aname">🚫 暂缓命名</span><span class="areason">IV本身是有价值的统计技术。需审视的是具体研究中工具变量的选取是否隐含绕开阶级变量的选择。</span></div>
+<div class="entry-a"><span class="anum">12.04</span><span class="aorig">双重差分（DID）</span><span class="aarr">→</span><span class="aname">🚫 暂缓命名</span><span class="areason">DID假设有其技术条件。当政策冲击本身是阶级博弈结果且处理/对照组处于不同阶级力量关系中时，不加检验地使用会掩盖因果机制。</span></div>
+<div class="entry-a"><span class="anum">12.05</span><span class="aorig">断点回归（RDD）</span><span class="aarr">→</span><span class="aname">🚫 暂缓命名</span><span class="areason">每种方法都有适用范围。批判应指向经济学界几乎只用RDD研究资本允许的边际问题而回避制度变革。</span></div>
+<div class="entry-a"><span class="anum">12.06</span><span class="aorig">随机对照实验（RCT）</span><span class="aarr">→</span><span class="aname">🚫 暂缓命名</span><span class="areason">技术上可以是非常严谨的工具。但无法在资本设定的围栏之外证明任何事——研究资助方决定哪些"干预"被允许进随机分配列表。</span></div>
+<div class="entry-a"><span class="anum">12.07</span><span class="aorig">面板数据</span><span class="aarr">→</span><span class="aname">对同一批劳动者长期追踪的数据结构</span><span class="areason">工具本身价值中立——劳动者手中是阶级压迫的时间序列证据；资本手中是剥削档案。</span></div>
+<div class="entry-a"><span class="anum">12.08</span><span class="aorig">时间序列</span><span class="aarr">→</span><span class="aname">资本积累的节奏记录</span><span class="areason">经济周期和阶级力量变化被压缩为数据点。</span></div>
+<div class="entry-a"><span class="anum">12.09</span><span class="aorig">协整</span><span class="aarr">→</span><span class="aname">资本统治结构中不同变量间的长期绑定关系</span><span class="areason">GDP与能源消耗、工资与利润份额的长期结构同步——协整是资本积累规律的数学指纹。</span></div>
+<div class="entry-a"><span class="anum">12.10</span><span class="aorig">格兰杰因果</span><span class="aarr">→</span><span class="aname">🚫 暂缓命名</span><span class="areason">格兰杰因果从未声称是真正因果关系——是限定的统计时序预测关系。问题在非统计背景使用者常将时序先后误解为机制证明。</span></div>
+</div>
+
+<!-- ═══════════ 第十三编：新兴概念与前沿 ═══════════ -->
+<div class="page">
+<div class="sec-hdr">第十三编 · 新兴概念与前沿议题（14条）</div>
+
+<div class="entry">
+<div class="entry-hd"><span class="num">13.01</span><h3>生成式 AI</h3><span class="badge-c">C类·三维概念束</span></div>
+<div class="entry-bd">
+<div class="renaming">生成式AI → 资本对人类集体知识积累的无偿吞噬与商业私有化</div>
+<div class="dim"><div class="dim-t">维度一：资本对人类集体知识积累的无偿吞噬与商业私有化（知识公有物私有化）</div><p>AI吞噬人类几千年文本、图像、代码——集体知识积累。训练完成后科技资本将其作为商业产品出售。劳动者创作时没得一分钱——资本训练出AI后向劳动者收费。</p></div>
+<div class="dim"><div class="dim-t">维度二：资本同时用于替代劳动者（压低工资）和管理劳动者（算法控制）的双用途工具（阶级后果）</div><p>AI既可以是劳动者解放工具（缩短劳动时间、辅助决策），也正被资本变成替代白领或强化算法管理的武器。</p></div>
+<div class="dim"><div class="dim-t">维度三：让劳动者第一次大规模拥有突破专业垄断和知识门槛的技术可能性（解放潜力）</div><p>AI可被劳动者用来打破资产阶级对知识、语言和解释权的垄断。不是反对AI——是反对资本垄断AI。</p></div>
+<div class="misuse"><strong>⚠ 误用：</strong>只在批判维度使用→跌入"反技术"陷阱，让无产阶级政治等同于抵制技术。必须同时肯定AI在劳动者手中的解放潜力。</div>
+<div class="mass-v">AI吃了全人类几千年写的书画的画写的代码——没给一分钱版权费——然后问你收20美元月费。你的知识被它吃了，它反过来卖给你。谁是贼？</div>
+</div></div>
+
+<div class="entry">
+<div class="entry-hd"><span class="num">13.02</span><h3>央行数字货币（CBDC）</h3><span class="badge-c">C类·双维概念束</span></div>
+<div class="entry-bd">
+<div class="renaming">CBDC → 国家对劳动者全部收支的实时全息监控工具</div>
+<div class="dim"><div class="dim-t">维度一：国家对劳动者全部收支的实时全息监控工具（监控维度）</div><p>劳动者的每一笔收支实时记录于央行账本。纸币时代无法监控底层现金交易——CBDC下底线不复存在。</p></div>
+<div class="dim"><div class="dim-t">维度二：以"反洗钱""宏观审慎"为名对劳动者储蓄实施定向贬值的技术条件（剥夺维度）</div><p>数字法币下负利率可绕过商业银行→货币自带贬损机制。你存的钱不花出去——它自动缩水。</p></div>
+<div class="mass-v">钱变数字法币后更方便了——政府看你更方便。每笔收支央行看得一清二楚。将来"刺激消费"可能就是"你存的钱自己会过期"。</div>
+</div></div>
+
+<div class="entry-a"><span class="anum">13.03</span><span class="aorig">数字货币</span><span class="aarr">→</span><span class="aname">电子化流通的剩余价值符号</span><span class="areason">数字化没有改变货币的阶级本质，只让追踪更精确、控制更即时。</span></div>
+<div class="entry-a"><span class="anum">13.04</span><span class="aorig">加密货币</span><span class="aarr">→</span><span class="aname">资本在传统监管之外开辟的投机新赌场</span><span class="areason">⚠区块链技术本身价值中立——劳动者合作组织可用分布式账本做公开簿记。不能将"区块链=骗局"。</span></div>
+<div class="entry-a"><span class="anum">13.05</span><span class="aorig">区块链</span><span class="aarr">→</span><span class="aname">同13.04，合并处理</span><span class="areason">分布式账本的技术形式与投机资本的利用应分开分析。</span></div>
+<div class="entry-a"><span class="anum">13.06</span><span class="aorig">Web3</span><span class="aarr">→</span><span class="aname">资本对互联网的再封建化蓝图</span><span class="areason">将"去中心化"包装为新卖点——在缺乏生产资料公有制的条件下，最终由资本巨头掌控数据和算力入口。</span></div>
+<div class="entry-a"><span class="anum">13.07</span><span class="aorig">数据要素</span><span class="aarr">→</span><span class="aname">资本将劳动者的全部数字足迹合法圈占为"自己投入的生产资料"</span><span class="areason">你每刷一条视频、搜一条信息、点一个赞——被无偿记录为平台生产要素，收益与你无关。</span></div>
+<div class="entry-a"><span class="anum">13.08</span><span class="aorig">零工经济</span><span class="aarr">→</span><span class="aname">去劳动关系化的深度剥削模式：有算法管理而无雇佣责任</span><span class="areason">平台将劳动者定义"独立承包商"→剥离社保工伤带薪假最低工资→同时通过算法行使比传统工厂更严密的劳动过程控制。</span></div>
+<div class="entry-a"><span class="anum">13.09</span><span class="aorig">元宇宙</span><span class="aarr">→</span><span class="aname">资本试图将劳动者的全部非劳动时间也纳入商品化和抽取范畴的虚拟空间殖民计划</span></div>
+<div class="entry-a"><span class="anum">13.10</span><span class="aorig">韧性（Resilience）</span><span class="aarr">→</span><span class="aname">资产阶级将危机成本全部转嫁给劳动者后要求劳动者继续忍耐的话语装置</span><span class="areason">"增强韧性"=让劳动者更耐打：失业还能打零工→通胀还能借债→降薪还能撑。谁的韧性？劳动者的。谁获益？资本。</span></div>
+<div class="entry-a"><span class="anum">13.11</span><span class="aorig">去全球化</span><span class="aarr">→</span><span class="aname">跨国资本在全球范围内重新布局剥削网络的收缩调整</span><span class="areason">不是全球化逆转，是剥削版图重组。A国工人失业，B国工人被压榨，资本带着利润站在两国劳动废墟上。</span></div>
+<div class="entry-a"><span class="anum">13.12</span><span class="aorig">友岸外包</span><span class="aarr">→</span><span class="aname">垄断资本在盟国间重新划分剩余价值抽取的地理范围</span></div>
+<div class="entry-a"><span class="anum">13.13</span><span class="aorig">近岸外包</span><span class="aarr">→</span><span class="aname">资本压缩劳动力地理套利空间</span></div>
+<div class="entry-a"><span class="anum">13.14</span><span class="aorig">另见附录</span><span class="aarr">→</span><span class="aname">🆕待新建：PE、PB、ROE、EPS、市值、分红、回购、IPO、退市等投资概念</span></div>
+</div>
+
+<!-- ═══════════ 附录 ═══════════ -->
+<div class="page">
+<div class="sec-hdr">附录A · D类待重写概念清单（8条）</div>
+<table class="apx-table">
+<thead><tr><th>编号</th><th>概念</th><th>暂缓原因</th><th>重写方向</th></tr></thead>
+<tbody>
+<tr><td>D01</td><td>边际效用</td><td>全盘否定，忽略其描述效力</td><td>限定适用范围：在既定财富分配下有效；遮蔽了偏好被资本制造</td></tr>
+<tr><td>D02</td><td>边际收益递减</td><td>命名模糊</td><td>区分：技术约束真实存在/资本选择裁员是阶级选择</td></tr>
+<tr><td>D03</td><td>内生性</td><td>把统计技术问题说成阶级操作</td><td>区分方法论局限 vs. 实践中的选择性忽视</td></tr>
+<tr><td>D04</td><td>工具变量（IV）</td><td>同上</td><td>同上</td></tr>
+<tr><td>D05</td><td>双重差分（DID）</td><td>同上</td><td>同上</td></tr>
+<tr><td>D06</td><td>断点回归（RDD）</td><td>过于阴谋化</td><td>承认方法适用范围有限，但不是方法本身有罪</td></tr>
+<tr><td>D07</td><td>随机对照实验（RCT）</td><td>同上</td><td>资助方决定什么可以随机分配</td></tr>
+<tr><td>D08</td><td>格兰杰因果</td><td>对统计概念的误读</td><td>区分统计时序关系 vs. 实践中被过度解读</td></tr>
+</tbody></table>
+
+<div class="sec-hdr">附录B · 🆕类待新建概念清单</div>
+<table class="apx-table">
+<thead><tr><th>组别</th><th>概念</th><th>建议归属</th></tr></thead>
+<tbody>
+<tr><td>估值指标</td><td>PE（市盈率）、PB（市净率）、ROE（净资产收益率）、EPS（每股收益）、市值</td><td>股市无产阶级词汇手册</td></tr>
+<tr><td>资本操作</td><td>分红、回购、IPO、增发、退市</td><td>股市无产阶级词汇手册</td></tr>
+<tr><td>风险工具</td><td>杠杆（投资语境）、保证金、止损、做空（投资语境）</td><td>股市无产阶级词汇手册</td></tr>
+<tr><td>市场结构</td><td>一级市场/二级市场、做市商、流动性（投资语境）</td><td>股市无产阶级词汇手册</td></tr>
+<tr><td>债券相关</td><td>收益率曲线、信用利差、久期</td><td>按需纳入</td></tr>
+</tbody></table>
+</div>
+
+<!-- ═══════════ 终页 ═══════════ -->
+<div class="page">
+<div class="sec-hdr">附录C · 完整词条索引（按编号排序）</div>
+<table class="apx-table">
+<thead><tr><th>编号</th><th>概念</th><th>类</th><th>主命名</th></tr></thead>
+<tbody>
+<tr><td>1.01</td><td>经济危机</td><td><span class="badge-sm-c">C</span></td><td>阶级力量重置周期</td></tr>
+<tr><td>1.02</td><td>通货膨胀</td><td><span class="badge-sm-c">C</span></td><td>资本掠夺性加价</td></tr>
+<tr><td>1.03</td><td>通货紧缩</td><td><span class="badge-sm-b">B</span></td><td>剩余价值实现危机性崩价</td></tr>
+<tr><td>1.04</td><td>GDP</td><td><span class="badge-sm-b">B</span></td><td>资本增殖账面总额</td></tr>
+<tr><td>1.05</td><td>GDP增长</td><td><span class="badge-sm-a">A</span></td><td>资本增殖速度</td></tr>
+<tr><td>1.06</td><td>国民生产总值</td><td><span class="badge-sm-a">A</span></td><td>本国资本与劳动力全球剥削所得</td></tr>
+<tr><td>1.07</td><td>潜在GDP</td><td><span class="badge-sm-a">A</span></td><td>资本扩张幻想产能</td></tr>
+<tr><td>1.08</td><td>经济周期</td><td><span class="badge-sm-a">A</span></td><td>资本积累的痉挛周期</td></tr>
+<tr><td>1.09</td><td>滞涨</td><td><span class="badge-sm-a">A</span></td><td>利润率崩溃与剥削率维持的并存痉挛</td></tr>
+<tr><td>1.10</td><td>菲利普斯曲线</td><td><span class="badge-sm-a">A</span></td><td>剥削率的短期政治权衡曲线</td></tr>
+<tr><td>1.11</td><td>奥肯定律</td><td><span class="badge-sm-a">A</span></td><td>剥削规模与剥削率的关系律</td></tr>
+<tr><td>1.12</td><td>总需求（AD）</td><td><span class="badge-sm-a">A</span></td><td>有支付能力的剥削需求</td></tr>
+<tr><td>1.13</td><td>总供给（AS）</td><td><span class="badge-sm-a">A</span></td><td>资本增殖能力曲线</td></tr>
+<tr><td>1.14</td><td>挤出效应</td><td><span class="badge-sm-a">A</span></td><td>政府为资本续命，挤占劳动市场空间</td></tr>
+<tr><td>1.15</td><td>自动稳定器</td><td><span class="badge-sm-a">A</span></td><td>资产阶级国家的阶级安抚装置</td></tr>
+<tr><td>1.16</td><td>债务与GDP之比</td><td><span class="badge-sm-a">A</span></td><td>资本透支未来剥削的杠杆率</td></tr>
+<tr><td>1.17</td><td>MMT</td><td><span class="badge-sm-a">A</span></td><td>主权货币掩护下的阶级妥协工具箱</td></tr>
+<tr><td>1.18</td><td>结构性改革</td><td><span class="badge-sm-a">A</span></td><td>资本对劳动权益的进攻</td></tr>
+<tr><td>1.19</td><td>核心通胀率</td><td><span class="badge-sm-a">A</span></td><td>剔除劳动者生存命脉后的修饰通胀</td></tr>
+<tr><td>1.20</td><td>CPI</td><td><span class="badge-sm-a">A</span></td><td>劳动者必要生活资料价格指数</td></tr>
+<tr><td>2.01</td><td>利率</td><td><span class="badge-sm-c">C</span></td><td>劳动者与资本之间的利益切换开关</td></tr>
+<tr><td>2.02</td><td>QE</td><td><span class="badge-sm-a">A</span></td><td>为资本续命的资产购买</td></tr>
+<tr><td>2.03</td><td>QT</td><td><span class="badge-sm-a">A</span></td><td>抽干流动性，逼迫劳动者让渡剩余</td></tr>
+<tr><td>2.04</td><td>货币政策</td><td><span class="badge-sm-a">A</span></td><td>资本流动性管理的阶级控制手段</td></tr>
+<tr><td>2.05</td><td>OMO</td><td><span class="badge-sm-a">A</span></td><td>银行资本利润的精准调控</td></tr>
+<tr><td>2.06</td><td>贴现率</td><td><span class="badge-sm-a">A</span></td><td>央行对商业银行的剥削分成比例</td></tr>
+<tr><td>2.07</td><td>准备金率</td><td><span class="badge-sm-a">A</span></td><td>可贷资本池的闸门调节</td></tr>
+<tr><td>2.08</td><td>联邦基金利率</td><td><span class="badge-sm-a">A</span></td><td>美国金融资本内部拆借剥削基准</td></tr>
+<tr><td>2.09</td><td>泰勒规则</td><td><span class="badge-sm-a">A</span></td><td>资本中央计划委员会的操作手册</td></tr>
+<tr><td>2.10</td><td>前瞻性指引</td><td><span class="badge-sm-a">A</span></td><td>资本对未来剥削节奏的预告</td></tr>
+<tr><td>3.01</td><td>供需定律</td><td><span class="badge-sm-b">B</span></td><td>阶级力量对比的价格表现</td></tr>
+<tr><td>3.02</td><td>稀缺性</td><td><span class="badge-sm-b">B</span></td><td>资本垄断造成的虚假匮乏</td></tr>
+<tr><td>3.03</td><td>边际效用</td><td><span class="badge-sm-a">A</span></td><td>在既定财富分配前提下的消费选择描述</td></tr>
+<tr><td>3.04</td><td>边际收益递减</td><td><span class="badge-sm-a">A</span></td><td>固定技术条件下增加可变资本时的产出衰减</td></tr>
+<tr><td>3.05</td><td>机会成本</td><td><span class="badge-sm-a">A</span></td><td>资产阶级决策的阶级代价计量</td></tr>
+<tr><td>3.06</td><td>弹性</td><td><span class="badge-sm-a">A</span></td><td>阶级间转嫁负担的能力差异测量</td></tr>
+<tr><td>3.07</td><td>需求价格弹性</td><td><span class="badge-sm-a">A</span></td><td>劳动者生存刚性的测量仪</td></tr>
+<tr><td>3.08</td><td>交叉弹性</td><td><span class="badge-sm-a">A</span></td><td>资本间争夺劳动者有限工资的竞争指标</td></tr>
+<tr><td>3.09</td><td>收入弹性</td><td><span class="badge-sm-a">A</span></td><td>阶级地位变化的需求映射</td></tr>
+<tr><td>3.10</td><td>消费者剩余</td><td><span class="badge-sm-a">A</span></td><td>劳动者被剥削幻觉的计量空间</td></tr>
+<tr><td>3.11</td><td>生产者剩余</td><td><span class="badge-sm-a">A</span></td><td>剩余价值的直接计量</td></tr>
+<tr><td>3.12</td><td>无谓损失</td><td><span class="badge-sm-a">A</span></td><td>阶级统治对社会总劳动的非生产性消耗</td></tr>
+<tr><td>3.13</td><td>帕累托最优</td><td><span class="badge-sm-a">A</span></td><td>禁止动摇剥削关系的数学辩护公式</td></tr>
+<tr><td>3.14</td><td>卡尔多-希克斯效率</td><td><span class="badge-sm-a">A</span></td><td>劫贫济富的理论许可证</td></tr>
+<tr><td>3.15</td><td>市场失灵</td><td><span class="badge-sm-a">A</span></td><td>资本无序扩张的系统性失效（非"失灵"）</td></tr>
+<tr><td>3.16</td><td>外部性</td><td><span class="badge-sm-a">A</span></td><td>资本成本转嫁的阶级通道</td></tr>
+<tr><td>3.17</td><td>正外部性</td><td><span class="badge-sm-a">A</span></td><td>劳动者自我增值的社会溢出</td></tr>
+<tr><td>3.18</td><td>负外部性</td><td><span class="badge-sm-a">A</span></td><td>资本毒害的阶级分摊</td></tr>
+<tr><td>3.19</td><td>公共物品</td><td><span class="badge-sm-a">A</span></td><td>阶级统治必需品的集体供给</td></tr>
+<tr><td>3.20</td><td>搭便车问题</td><td><span class="badge-sm-a">A</span></td><td>资产阶级对公共福利的寄生指责</td></tr>
+<tr><td>4.01</td><td>信息不对称</td><td><span class="badge-sm-a">A</span></td><td>资本对劳动的制度性认知特权</td></tr>
+<tr><td>4.02</td><td>逆向选择</td><td><span class="badge-sm-a">A</span></td><td>资本劣质化剥削的自我强化螺旋</td></tr>
+<tr><td>4.03</td><td>道德风险</td><td><span class="badge-sm-a">A</span></td><td>资产阶级对劳动者自我保护的系统性污名化</td></tr>
+<tr><td>4.04</td><td>博弈论</td><td><span class="badge-sm-a">A</span></td><td>将不对称权力伪装为对称策略互动</td></tr>
+<tr><td>4.05</td><td>纳什均衡</td><td><span class="badge-sm-a">A</span></td><td>阶级力量暂时平衡的静止点</td></tr>
+<tr><td>4.06</td><td>囚徒困境</td><td><span class="badge-sm-a">A</span></td><td>资本分化劳动者的经典模型</td></tr>
+<tr><td>4.07</td><td>零和博弈</td><td><span class="badge-sm-a">A</span></td><td>资本与劳动在分配领域的根本对立</td></tr>
+<tr><td>4.08</td><td>交易成本</td><td><span class="badge-sm-a">A</span></td><td>资本为维持剥削关系必须支付的统治费用</td></tr>
+<tr><td>5.01</td><td>比较优势</td><td><span class="badge-sm-c">C</span></td><td>资本全球剥削布局的合理化借口</td></tr>
+<tr><td>5.02</td><td>汇率</td><td><span class="badge-sm-c">C</span></td><td>一国劳动者购买力被国际金融资本定价的工具</td></tr>
+<tr><td>5.03</td><td>绝对优势</td><td><span class="badge-sm-a">A</span></td><td>资本对特定劳动技能的历史性垄断</td></tr>
+<tr><td>5.12</td><td>PPP</td><td><span class="badge-sm-a">A</span></td><td>相同劳动在不同国家被天差地别定价的国际比较尺</td></tr>
+<tr><td>5.16</td><td>全球价值链</td><td><span class="badge-sm-a">A</span></td><td>跨国资本对全球劳动者的分段剥削链</td></tr>
+<tr><td>5.25</td><td>全球化</td><td><span class="badge-sm-a">A</span></td><td>跨国资本统一剥削全球劳动者的空间整合</td></tr>
+<tr><td>6.01</td><td>资产</td><td><span class="badge-sm-c">C</span></td><td>对他人劳动的法律支配凭证</td></tr>
+<tr><td>6.02</td><td>MBS</td><td><span class="badge-sm-c">C</span></td><td>住房劳动者的集体债务债券抵押品</td></tr>
+<tr><td>6.03</td><td>衍生品</td><td><span class="badge-sm-c">C</span></td><td>对剩余价值的二次赌博合约</td></tr>
+<tr><td>6.04</td><td>负债</td><td><span class="badge-sm-a">A</span></td><td>劳动者未来的被剥削义务</td></tr>
+<tr><td>6.05</td><td>股票</td><td><span class="badge-sm-a">A</span></td><td>剩余价值的分配权证</td></tr>
+<tr><td>6.14</td><td>杠杆</td><td><span class="badge-sm-a">A</span></td><td>用少数自有资本撬动对大量他人劳动的支配权</td></tr>
+<tr><td>7.01</td><td>失业</td><td><span class="badge-sm-c">C</span></td><td>产业后备军（马克思原概念）</td></tr>
+<tr><td>7.02</td><td>人力资本</td><td><span class="badge-sm-b">B</span></td><td>被量化为资本会计科目的活劳动</td></tr>
+<tr><td>7.03</td><td>最低工资</td><td><span class="badge-sm-b">B</span></td><td>阶级斗争成果冻结为制度形态的工资底线</td></tr>
+<tr><td>9.01</td><td>专利/IP</td><td><span class="badge-sm-c">C</span></td><td>技术垄断的合法性特许状</td></tr>
+<tr><td>9.11</td><td>平台经济</td><td><span class="badge-sm-a">A</span></td><td>有算法管理而无雇佣责任的数字化控制体系</td></tr>
+<tr><td>11.01</td><td>产权</td><td><span class="badge-sm-c">C</span></td><td>阶级占有关系的法律暴力背书</td></tr>
+<tr><td>13.01</td><td>生成式AI</td><td><span class="badge-sm-c">C</span></td><td>资本对人类集体知识积累的无偿吞噬与私有化</td></tr>
+<tr><td>13.02</td><td>CBDC</td><td><span class="badge-sm-c">C</span></td><td>国家对劳动者收支的全息监控工具</td></tr>
+</tbody></table>
+
+<div class="hl-box" style="margin-top:2rem;">
+夺回命名权，就是夺回对世界的解释权。<br>
+让资产阶级在无产阶级真理的光芒下发抖吧！<br>
+<strong>全世界无产者，联合起来！</strong>
+</div>
+
+<p style="text-align:center; margin:2rem 0; color:var(--darkred); letter-spacing:0.15em; font-weight:700; font-size:0.9rem;">
+★ ★ ★<br><br>
+《无产阶级政治经济学命名词典》v4.0 · 正式版 · 完整版<br>
+共十三编 · 约190词条 · 编纂完成：2026年6月<br><br>
+命名权工程<br>
+—— 笔壳与笔芯 ——<br><br>
+<small>本图册收录全部词条。C类多维概念束（17个）包含完整遮蔽分析+误用警示+群众转化；B类双维命名（11个）包含维度拆解；A类单一命名（约140个）以紧凑卡片呈现；D类暂缓（8个）+🆕待新建（约18个）列入附录。</small>
+</p>
+</div>
+
+</body>
+</html>
